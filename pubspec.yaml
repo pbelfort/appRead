@@ -11,7 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  easy_mask: ^2.0.1
+  pin_code_fields: ^7.4.0
   get: ^4.6.5
   flutter_screenutil: ^5.7.0
 
