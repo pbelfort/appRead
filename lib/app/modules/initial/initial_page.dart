@@ -52,7 +52,9 @@ class InitialPage extends GetView<InitialController> {
                     width: Get.width,
                     title: 'Entrar',
                     style: CustomButtonStyle.styleCardGreen,
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.goToLoginPage();
+                    },
                   ),
                 ),
               ],

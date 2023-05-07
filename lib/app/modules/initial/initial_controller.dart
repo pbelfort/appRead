@@ -5,4 +5,8 @@ class InitialController extends GetxController {
   void goToRegisterPage() {
     Get.toNamed(Routes.REGISTER);
   }
+
+  void goToLoginPage() {
+    Get.toNamed(Routes.LOGIN);
+  }
 }

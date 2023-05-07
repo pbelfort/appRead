@@ -4,6 +4,8 @@ import '../modules/home/home_binding.dart';
 import '../modules/home/home_page.dart';
 import '../modules/initial/initial_binding.dart';
 import '../modules/initial/initial_page.dart';
+import '../modules/login/login_binding.dart';
+import '../modules/login/login_page.dart';
 import '../modules/register/1_form_register/register_binding.dart';
 import '../modules/register/1_form_register/register_page.dart';
 import '../modules/register/2_token/token_binding.dart';
@@ -49,6 +51,13 @@ class AppPages {
       name: Routes.TOKEN,
       page: () => const TokenPage(),
       binding: TokenBinding(),
+    ),
+
+    //LOGIN PAGE
+    GetPage(
+      name: Routes.LOGIN,
+      page: () => const LoginPage(),
+      binding: LoginBinding(),
     ),
   ];
 }
