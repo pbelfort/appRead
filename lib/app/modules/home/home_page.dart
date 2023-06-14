@@ -38,12 +38,12 @@ class HomePage extends GetView<HomePageController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 HomeCardWidget(
-                  cardFunctionCalback: () => print('mas'),
+                  cardFunctionCalback: controller.goToUserSelectedHomePage,
                   cardWidgetIcon: Icons.person,
                   cardTitle: 'Pedro',
                 ),
                 HomeCardWidget(
-                  cardFunctionCalback: () => print('mes'),
+                  cardFunctionCalback: controller.goToAdminPage,
                   cardWidgetIcon: Icons.admin_panel_settings,
                   cardTitle: 'Admin',
                 ),
