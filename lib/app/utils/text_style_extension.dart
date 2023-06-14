@@ -1,39 +1,23 @@
 import 'package:flutter/material.dart';
 
-extension TxTheme on TextStyle {
-  /// fontWeight: FontWeight.bold
-  TextStyle get bold => copyWith(fontWeight: FontWeight.bold);
+extension TextThemeExtension on TextStyle {
+  TextStyle get fontWeightBold => copyWith(fontWeight: FontWeight.bold);
 
-  /// fontWeight: FontWeight.normal
-  TextStyle get normal => copyWith(fontWeight: FontWeight.normal);
+  TextStyle get fontWeightNormal => copyWith(fontWeight: FontWeight.normal);
 
-  /// FontWeight.w400
-  TextStyle get thin => copyWith(fontWeight: FontWeight.w400);
+  TextStyle get fontWeightW400 => copyWith(fontWeight: FontWeight.w400);
 
-  /// fontSize: 24
-  TextStyle get xs => copyWith(fontSize: 12);
+  TextStyle get fontSizeSmall => copyWith(fontSize: 12);
 
-  /// fontSize: 24
-  TextStyle get md => copyWith(fontSize: 14);
+  TextStyle get fontSizeMedium => copyWith(fontSize: 14);
 
-  /// fontSize: 24
-  TextStyle get lg => copyWith(fontSize: 18);
+  TextStyle get fontSizeLarge => copyWith(fontSize: 18);
 
-  /// fontSize: 24
-  TextStyle get xl => copyWith(fontSize: 24);
+  TextStyle setFontSize(double fontSize) => copyWith(fontSize: fontSize);
 
-  /// set fontSize to [fontSize]
-  TextStyle fs(double fontSize) => copyWith(fontSize: fontSize);
+  TextStyle setColor(Color color) => copyWith(color: color);
 
-  /// set Color to [color]
-  TextStyle cl(Color color) => copyWith(color: color);
+  TextStyle setFontWeight(FontWeight fw) => copyWith(fontWeight: fw);
 
-  /// set [FontWeight] to [fontWeight]
-  TextStyle fw(FontWeight fw) => copyWith(fontWeight: fw);
-
-  /// set [double] to [letterSpacing]
-  TextStyle ls(double ls) => copyWith(letterSpacing: ls);
-
-  /// set fontStyle to [FontStyle.italic]
-  TextStyle get it => copyWith(fontStyle: FontStyle.italic);
+  TextStyle setLetterSpacings(double ls) => copyWith(letterSpacing: ls);
 }
