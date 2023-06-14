@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../theme/app_colors.dart';
 import '../widgets/buttons/custom_button_widget.dart';
@@ -20,9 +21,13 @@ class InitialPage extends GetView<InitialController> {
             hasScrollBody: false,
             child: Column(
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 250.0),
-                  child: Icon(Icons.abc),
+                Padding(
+                  padding: const EdgeInsets.only(top: 150.0),
+                  child: Lottie.asset(
+                    'lib/app/assets/bookLogo.json',
+                    width: 350,
+                    repeat: false,
+                  ),
                 ),
                 const Expanded(child: SizedBox.shrink()),
                 Padding(

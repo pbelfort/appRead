@@ -61,7 +61,7 @@ class TokenPage extends GetView<TokenController> {
                       fontWeight: FontWeight.bold,
                     ),
                     pinTheme: PinTheme(
-                      activeColor: AppColors.green,
+                      activeColor: AppColors.primaryColor,
                       inactiveColor: AppColors.darkGray,
                       selectedColor: AppColors.mediumGray,
                       activeFillColor: Colors.red,

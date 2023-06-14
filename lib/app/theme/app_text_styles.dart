@@ -106,9 +106,9 @@ class AppTextStyles {
     color: AppColors.black,
   );
 
-  static TextStyle textLight18Green = TextStyle(
+  static TextStyle textLight18Primary = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w600,
-    color: AppColors.green,
+    color: AppColors.primaryColor,
   );
 }

@@ -156,14 +156,14 @@ class CustomTextFormField extends GetView {
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       textCapitalization: textCapitalization ?? TextCapitalization.none,
-      cursorColor: AppColors.green,
+      cursorColor: AppColors.primaryColor,
       style: isMoney == null
           ? TextStyle(
               color: AppColors.white,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400)
           : TextStyle(
-              color: AppColors.green,
+              color: AppColors.primaryColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w600),
       decoration: InputDecoration(
@@ -186,7 +186,7 @@ class CustomTextFormField extends GetView {
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400)
               : TextStyle(
-                  color: AppColors.green,
+                  color: AppColors.primaryColor,
                   fontSize: 22.sp,
                   fontWeight: FontWeight.w600),
           border: OutlineInputBorder(
@@ -238,7 +238,7 @@ class CustomTextFormField extends GetView {
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
                   child: const Text("\$",
                       style: TextStyle(
-                          color: AppColors.green,
+                          color: AppColors.primaryColor,
                           fontSize: 22,
                           fontWeight: FontWeight.w600)),
                 )

@@ -5,25 +5,25 @@ import '../../../theme/app_colors.dart';
 
 class CustomButtonStyle {
   static final styleGreen = CustomButtonStyle(
-    backgroundColor: AppColors.green,
+    backgroundColor: AppColors.primaryColor,
     titleColor: AppColors.white,
     fontSize: 12.sp,
   );
 
   static final styleGreenRounded = CustomButtonStyle(
-    backgroundColor: AppColors.green,
+    backgroundColor: AppColors.primaryColor,
     titleColor: AppColors.backgroundColor,
     fontSize: 14.sp,
   );
 
   static final styleDarkGreen = CustomButtonStyle(
-    backgroundColor: AppColors.darkGreen,
+    backgroundColor: AppColors.primaryColor,
     titleColor: AppColors.white,
     fontSize: 12.sp,
   );
 
   static final styleCardGreen = CustomButtonStyle(
-    backgroundColor: AppColors.darkGreen,
+    backgroundColor: AppColors.primaryColor,
     titleColor: AppColors.white,
     fontSize: 16.sp,
   );
@@ -68,9 +68,9 @@ class CustomButtonStyle {
 
   static final styleOutlineDarkGreen = CustomButtonStyle(
     backgroundColor: AppColors.white,
-    titleColor: AppColors.darkGreen,
+    titleColor: AppColors.primaryColor,
     fontSize: 12.sp,
-    borderColor: AppColors.darkGreen,
+    borderColor: AppColors.primaryColor,
   );
 
   final Color backgroundColor;
