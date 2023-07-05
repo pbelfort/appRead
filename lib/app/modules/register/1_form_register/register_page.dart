@@ -1,6 +1,5 @@
 import 'package:app_read/app/modules/register/1_form_register/register_controller.dart';
 import 'package:app_read/app/modules/register/1_form_register/widgets/form_register_widget.dart';
-import 'package:app_read/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
