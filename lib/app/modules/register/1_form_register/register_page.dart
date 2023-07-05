@@ -66,7 +66,7 @@ class RegisterPage extends GetView<RegisterController> {
                     title: 'Seguinte',
                     style: CustomButtonStyle.styleGreenRounded,
                     onPressed: () {
-                      Get.toNamed(Routes.TOKEN);
+                      controller.validateFormRegister();
                     },
                   ),
                 ),

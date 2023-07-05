@@ -66,33 +66,9 @@ class FormRegister extends GetView<RegisterController> {
               borderColor: AppColors.backgroundColor,
               fillColor: Colors.black,
               textInputEnable: true,
-              onChanged: (value) {},
-              keyboardType: TextInputType.visiblePassword,
-              textCapitalization: TextCapitalization.none,
-              labelText: 'Digite sua senha',
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'O campo senha não pode ser vazio.';
-                } else if (value != controller.confirmpassTextController.text) {
-                  return 'As senhas devem ser iguais.';
-                } else if (value.length < 8) {
-                  return 'As senhas deve conter no minimo 8 caracteres.';
-                }
-                return null;
+              onChanged: (value) {
+                controller.validatePasswordStrength();
               },
-            ),
-            SizedBox(height: 20.h),
-            CustomTextFormField.password(
-              textEditingController: controller.confirmpassTextController,
-              passwordVisible: true,
-              onTapPasswordVisible: () {},
-              changeAccount: true,
-              textInputPasswordVisible: false,
-              textInputUsernameVisible: false,
-              borderColor: AppColors.backgroundColor,
-              fillColor: Colors.black,
-              textInputEnable: true,
-              onChanged: (value) {},
               keyboardType: TextInputType.visiblePassword,
               textCapitalization: TextCapitalization.none,
               labelText: 'Digite sua senha novamente',
