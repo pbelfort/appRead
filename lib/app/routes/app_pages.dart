@@ -1,3 +1,4 @@
+import 'package:app_read/app/modules/user_book/user_book_page.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/home_binding.dart';
@@ -12,6 +13,7 @@ import '../modules/register/2_token/token_binding.dart';
 import '../modules/register/2_token/token_page.dart';
 import '../modules/splash/splash_binding.dart';
 import '../modules/splash/splash_page.dart';
+import '../modules/user_book/user_book_binding.dart';
 
 part 'app_routes.dart';
 
@@ -58,6 +60,13 @@ class AppPages {
       name: Routes.LOGIN,
       page: () => const LoginPage(),
       binding: LoginBinding(),
+    ),
+
+    //USER BOOK PAGE
+    GetPage(
+      name: Routes.USER_BOOK,
+      page: () => const UserBookPage(),
+      binding: UserBookBinding(),
     ),
   ];
 }

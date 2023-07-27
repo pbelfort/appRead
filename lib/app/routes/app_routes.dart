@@ -9,4 +9,5 @@ abstract class Routes {
   static const INITIAL = '/initial';
   static const REGISTER = '/register';
   static const TOKEN = '/token';
+  static const USER_BOOK = '/user_book';
 }

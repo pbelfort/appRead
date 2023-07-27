@@ -1,3 +1,4 @@
+import 'package:app_read/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
@@ -5,7 +6,7 @@ class HomePageController extends GetxController {
     print('admin page');
   }
 
-  void goToUserSelectedHomePage() {
-    print('selected user home page');
+  void goToUserBookPage() {
+    Get.toNamed(Routes.USER_BOOK);
   }
 }
