@@ -26,7 +26,7 @@ class UserBookPage extends GetView<UserBookController> {
             children: [
               const UserBookHeader(),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               const BodyWidget(),
               Padding(

@@ -30,6 +30,10 @@ class LibraryItems extends GetView<LibraryController> {
             children: [
               ...controller.mockList.map(
                 (book) => CustomCardWidget(
+                  action: () async => await controller.goToReadingPage(
+                    title: book.title ?? '',
+                    description: book.description ?? '',
+                  ),
                   book: book,
                   icon: Icons.abc,
                 ),

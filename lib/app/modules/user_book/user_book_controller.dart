@@ -13,11 +13,28 @@ class UserBookController extends GetxController {
     (index) => BookModel(
       title: faker.lorem.word(),
       ageBook: int.parse(faker.address.buildingNumber()),
-      description: faker.lorem.sentence(),
+      description: faker.lorem
+          .sentences(100)
+          .toString()
+          .replaceAll('[', '')
+          .replaceAll(']', ''),
     ),
   );
 
   goToLibraryPage() {
     Get.toNamed(Routes.LIBRARY);
+  }
+
+  Future<void> goToReadingPage({
+    required String title,
+    required String description,
+  }) async {
+    await Get.toNamed(
+      Routes.READING_BOOK,
+      parameters: {
+        'book_title': title,
+        'book_description': description,
+      },
+    );
   }
 }

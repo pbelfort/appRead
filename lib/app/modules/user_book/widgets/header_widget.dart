@@ -11,21 +11,10 @@ class UserBookHeader extends GetView<UserBookController> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.backgroundColor,
-      padding: const EdgeInsets.fromLTRB(18, 10, 16, 25),
+      padding: const EdgeInsets.fromLTRB(18, 0, 16, 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          RichText(
-            text: TextSpan(
-              text: 'Agora vamos selecionar um livro para ler',
-              style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                  ),
-            ),
-          ),
-          const SizedBox(height: 30),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

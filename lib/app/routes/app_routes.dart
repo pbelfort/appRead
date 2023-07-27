@@ -11,4 +11,5 @@ abstract class Routes {
   static const TOKEN = '/token';
   static const USER_BOOK = '/user_book';
   static const LIBRARY = '/library';
+  static const READING_BOOK = '/reading_book';
 }

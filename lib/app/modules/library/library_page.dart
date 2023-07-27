@@ -14,7 +14,7 @@ class LibraryPage extends GetView<UserBookController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: CustomAppBarWidget(),
+      appBar: const CustomAppBarWidget(),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 8.0,
