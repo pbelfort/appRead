@@ -159,7 +159,7 @@ class CustomTextFormField extends GetView {
       cursorColor: AppColors.primaryColor,
       style: isMoney == null
           ? TextStyle(
-              color: AppColors.white,
+              color: AppColors.primaryColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400)
           : TextStyle(

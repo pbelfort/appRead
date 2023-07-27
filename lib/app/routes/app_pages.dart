@@ -1,3 +1,5 @@
+import 'package:app_read/app/modules/library/library_binding.dart';
+import 'package:app_read/app/modules/library/library_page.dart';
 import 'package:app_read/app/modules/user_book/user_book_page.dart';
 import 'package:get/get.dart';
 
@@ -67,6 +69,13 @@ class AppPages {
       name: Routes.USER_BOOK,
       page: () => const UserBookPage(),
       binding: UserBookBinding(),
+    ),
+
+    //LIBRARY PAGE
+    GetPage(
+      name: Routes.LIBRARY,
+      page: () => const LibraryPage(),
+      binding: LibraryBinding(),
     ),
   ];
 }

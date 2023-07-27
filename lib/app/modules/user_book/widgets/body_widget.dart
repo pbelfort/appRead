@@ -20,12 +20,11 @@ class BodyWidget extends GetView<UserBookController> {
             scrollDirection: Axis.horizontal,
             physics: const BouncingScrollPhysics(),
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 LabelButton(
                   'Biblioteca',
                   Icons.library_books_outlined,
-                  onPressed: () {},
+                  onPressed: () => controller.goToLibraryPage(),
                 ),
               ],
             ),

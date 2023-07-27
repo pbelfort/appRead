@@ -14,12 +14,12 @@ class BookModel {
   });
 
   final String? title;
-  final String? ageBook;
+  final int? ageBook;
   final String? description;
 
   BookModel copyWith({
     final String? title,
-    final String? ageBook,
+    final int? ageBook,
     final String? description,
   }) {
     return BookModel(

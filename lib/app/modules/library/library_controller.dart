@@ -1,13 +1,11 @@
 import 'package:app_read/app/data/model/book_model.dart';
-import 'package:app_read/app/routes/app_pages.dart';
 import 'package:faker/faker.dart';
 import 'package:get/get.dart';
 
 final faker = Faker();
 
-class UserBookController extends GetxController {
-  UserBookController();
-
+class LibraryController extends GetxController {
+  LibraryController();
   final mockList = List<BookModel>.generate(
     17,
     (index) => BookModel(
@@ -16,8 +14,4 @@ class UserBookController extends GetxController {
       description: faker.lorem.sentence(),
     ),
   );
-
-  goToLibraryPage() {
-    Get.toNamed(Routes.LIBRARY);
-  }
 }

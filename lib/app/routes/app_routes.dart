@@ -10,4 +10,5 @@ abstract class Routes {
   static const REGISTER = '/register';
   static const TOKEN = '/token';
   static const USER_BOOK = '/user_book';
+  static const LIBRARY = '/library';
 }

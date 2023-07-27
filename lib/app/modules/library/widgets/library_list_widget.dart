@@ -1,13 +1,11 @@
-import 'package:app_read/app/modules/widgets/custom_card_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../theme/app_colors.dart';
-import '../user_book_controller.dart';
+import '../../widgets/custom_card_widget.dart';
+import '../library_controller.dart';
 
-class BookITems extends GetView<UserBookController> {
-  const BookITems({Key? key}) : super(key: key);
+class LibraryItems extends GetView<LibraryController> {
+  const LibraryItems({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

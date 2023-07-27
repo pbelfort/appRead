@@ -11,7 +11,7 @@ class UserBookHeader extends GetView<UserBookController> {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.backgroundColor,
-      padding: const EdgeInsets.fromLTRB(18, 40, 16, 25),
+      padding: const EdgeInsets.fromLTRB(18, 10, 16, 25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
