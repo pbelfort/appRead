@@ -5,6 +5,6 @@ class ReadingController extends GetxController {
   final bookDescription = Get.parameters['book_description'];
 
   void goToQuizPage() {
-    print('Go to quiz page');
+    ('Go to quiz page');
   }
 }

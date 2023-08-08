@@ -1,24 +1,20 @@
-import 'package:app_read/app/data/model/book_model.dart';
 import 'package:app_read/app/routes/app_pages.dart';
-import 'package:faker/faker.dart';
+import 'package:app_read/app/usecases/library/library_usecases.dart';
 import 'package:get/get.dart';
 
-final faker = Faker();
+import '../../data/repository/library/i_library_repository.dart.dart';
 
 class LibraryController extends GetxController {
-  final mockList = List<BookModel>.generate(
-    17,
-    (index) => BookModel(
-      title: faker.lorem.word(),
-      ageBook: int.parse(faker.address.buildingNumber()),
-      description: faker.lorem
-          .sentences(100)
-          .toString()
-          .replaceAll('[', '')
-          .replaceAll(']', ''),
-    ),
-  );
-  LibraryController();
+  final ILibraryRepository iLibraryRepository;
+
+  LibraryController({required this.iLibraryRepository});
+
+  @override
+  Future<void> onInit() async {
+    final bookList = await LibraryUsecases.getAllBooks(iLibraryRepository);
+    print(bookList);
+    super.onInit();
+  }
 
   Future<void> goToReadingPage({
     required String title,
