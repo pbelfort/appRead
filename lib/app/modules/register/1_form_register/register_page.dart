@@ -17,62 +17,64 @@ class RegisterPage extends GetView<RegisterController> {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
-        child:
-            CustomScrollView(physics: const BouncingScrollPhysics(), slivers: [
-          SliverFillRemaining(
-            hasScrollBody: false,
-            child: Column(
-              children: [
-                const Icon(Icons.abc),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Text(
-                    'Criar uma conta',
-                    style: AppTextStyles.textBold19.merge(
-                      const TextStyle(color: AppColors.white),
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  const Icon(Icons.abc),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Text(
+                      'Criar uma conta',
+                      style: AppTextStyles.textBold19.merge(
+                        const TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0, bottom: 60.0),
-                  child: Text(
-                    'Para iniciar o cadastro, digite os dados solicitados.',
-                    style: AppTextStyles.textRegular14.merge(
-                      const TextStyle(color: AppColors.white),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0, bottom: 60.0),
+                    child: Text(
+                      'Para iniciar o cadastro, digite os dados solicitados.',
+                      style: AppTextStyles.textRegular14.merge(
+                        const TextStyle(color: AppColors.white),
+                      ),
                     ),
                   ),
-                ),
-                const FormRegister(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                CharacterPasswordIndicator(
-                  registerController: controller,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                const Expanded(child: SizedBox.shrink()),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: CustomButtonWidget(
-                    borderRadius: 10,
-                    hasIcon: false,
-                    iconData: Icons.arrow_forward_ios_rounded,
-                    iconColor: AppColors.headerColor,
-                    height: 45.h,
-                    width: Get.width,
-                    title: 'Seguinte',
-                    style: CustomButtonStyle.styleGreenRounded,
-                    onPressed: () {
-                      controller.validateFormRegister();
-                    },
+                  const FormRegister(),
+                  SizedBox(
+                    height: 20.h,
                   ),
-                ),
-              ],
+                  CharacterPasswordIndicator(
+                    registerController: controller,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  const Expanded(child: SizedBox.shrink()),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: CustomButtonWidget(
+                      borderRadius: 10,
+                      hasIcon: false,
+                      iconData: Icons.arrow_forward_ios_rounded,
+                      iconColor: AppColors.headerColor,
+                      height: 45.h,
+                      width: Get.width,
+                      title: 'Seguinte',
+                      style: CustomButtonStyle.styleGreenRounded,
+                      onPressed: () {
+                        controller.validateFormRegister();
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

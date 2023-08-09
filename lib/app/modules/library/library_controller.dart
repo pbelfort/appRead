@@ -20,14 +20,12 @@ class LibraryController extends ICustomController {
   }
 
   Future<void> goToReadingPage({
-    required String title,
-    required String description,
+    required BookEntity book,
   }) async {
     await Get.toNamed(
       Routes.READING_BOOK,
-      parameters: {
-        'book_title': title,
-        'book_description': description,
+      arguments: {
+        'book': book,
       },
     );
   }

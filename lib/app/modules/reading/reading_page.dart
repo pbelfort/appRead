@@ -12,55 +12,116 @@ class ReadingPage extends GetView<ReadingController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarWidget(),
-      body: ListView(
-        children: [
-          Container(
-            decoration: const BoxDecoration(color: AppColors.backgroundColor),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  controller.bookTitle!.toUpperCase(),
-                  style: const TextStyle(
-                    color: AppColors.white,
+        backgroundColor: AppColors.backgroundColor,
+        appBar: const CustomAppBarWidget(),
+        body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Column(
+                children: [
+                  Text(
+                    controller.book.title!.toUpperCase(),
+                    style: const TextStyle(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 25,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6),
-                  child: Center(
-                    child: Text(
-                      controller.bookDescription!,
-                      style: const TextStyle(
-                        color: AppColors.white,
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 6),
+                    child: Center(
+                      child: Text(
+                        controller.book.description!,
+                        style: const TextStyle(
+                          color: AppColors.white,
+                          fontSize: 20,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            color: AppColors.backgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextButton(
-                onPressed: () => controller.goToQuizPage(),
-                style: TextButton.styleFrom(
-                  backgroundColor: AppColors.primaryColor,
-                  foregroundColor: AppColors.white,
-                ),
-                child: const Text('Quiz'),
+                  Expanded(
+                      child: SizedBox(
+                    width: Get.width,
+                    child: Column(
+                      children: [
+                        const Spacer(),
+                        Container(
+                          width: Get.width,
+                          color: AppColors.backgroundColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextButton(
+                              onPressed: () => controller.goToQuizPage(),
+                              style: TextButton.styleFrom(
+                                backgroundColor: AppColors.primaryColor,
+                                foregroundColor: AppColors.white,
+                              ),
+                              child: const Text('Quiz'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )),
+                ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        )
+
+        //  ListView(
+        //   children: [
+        //     Column(
+        //       children: [
+        //         const SizedBox(
+        //           height: 20,
+        //         ),
+        //         Text(
+        //           controller.book.title!.toUpperCase(),
+        //           style: const TextStyle(
+        //             color: AppColors.white,
+        //             fontWeight: FontWeight.w800,
+        //             fontSize: 25,
+        //           ),
+        //         ),
+        //         const SizedBox(
+        //           height: 50,
+        //         ),
+        //         Padding(
+        //           padding: const EdgeInsets.symmetric(horizontal: 6),
+        //           child: Center(
+        //             child: Text(
+        //               controller.book.description!,
+        //               style: const TextStyle(
+        //                 color: AppColors.white,
+        //                 fontSize: 20,
+        //               ),
+        //             ),
+        //           ),
+        //         ),
+        //       ],
+        //     ),
+        //     Container(
+        //       color: AppColors.backgroundColor,
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(8.0),
+        //         child: TextButton(
+        //           onPressed: () => controller.goToQuizPage(),
+        //           style: TextButton.styleFrom(
+        //             backgroundColor: AppColors.primaryColor,
+        //             foregroundColor: AppColors.white,
+        //           ),
+        //           child: const Text('Quiz'),
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
+        );
   }
 }

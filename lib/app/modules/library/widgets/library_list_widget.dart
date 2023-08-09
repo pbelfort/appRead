@@ -31,8 +31,7 @@ class LibraryItems extends GetView<LibraryController> {
               ...controller.bookList.map(
                 (book) => CustomCardWidget(
                   action: () async => await controller.goToReadingPage(
-                    title: book.title ?? '',
-                    description: book.description ?? '',
+                    book: book,
                   ),
                   book: book,
                   icon: Icons.abc,

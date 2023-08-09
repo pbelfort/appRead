@@ -2,6 +2,7 @@ import 'package:app_read/app/modules/library/library_controller.dart';
 import 'package:app_read/app/modules/library/widgets/library_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import '../../theme/app_colors.dart';
 import '../widgets/custom_app_bar_widget.dart';
 import '../widgets/text_form_fields/custom_text_form_field.dart';
@@ -87,11 +88,13 @@ class LibraryPage extends GetView<LibraryController> {
               Obx(
                 () {
                   if (controller.showLoading.value) {
-                    return const SizedBox(
-                      width: 40,
-                      height: 40,
-                      child: CircularProgressIndicator(
-                        color: AppColors.primaryColor,
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 100.0),
+                      child: Center(
+                        child: Lottie.asset(
+                          'lib/app/assets/bookLogo.json',
+                          width: 150,
+                        ),
                       ),
                     );
                   }
