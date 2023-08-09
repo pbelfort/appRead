@@ -1,13 +1,12 @@
+import 'package:app_read/app/modules/library/library_controller.dart';
 import 'package:app_read/app/modules/library/widgets/library_list_widget.dart';
-import 'package:app_read/app/modules/user_book/user_book_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../theme/app_colors.dart';
 import '../widgets/custom_app_bar_widget.dart';
 import '../widgets/text_form_fields/custom_text_form_field.dart';
 
-class LibraryPage extends GetView<UserBookController> {
+class LibraryPage extends GetView<LibraryController> {
   const LibraryPage({Key? key}) : super(key: key);
 
   @override
@@ -85,9 +84,22 @@ class LibraryPage extends GetView<UserBookController> {
                   ),
                 ],
               ),
-              const Expanded(
-                child: LibraryItems(),
-              ),
+              Obx(
+                () {
+                  if (controller.showLoading.value) {
+                    return const SizedBox(
+                      width: 40,
+                      height: 40,
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ),
+                    );
+                  }
+                  return const Expanded(
+                    child: LibraryItems(),
+                  );
+                },
+              )
             ],
           ),
         ),

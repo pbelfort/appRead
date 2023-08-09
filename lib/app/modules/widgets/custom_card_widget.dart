@@ -1,11 +1,11 @@
+import 'package:app_read/app/domain/book_entity.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/model/book_model.dart';
 import '../../theme/app_colors.dart';
 
 class CustomCardWidget extends StatelessWidget {
   final IconData icon;
-  final BookModel book;
+  final BookEntity book;
   final Function()? action;
 
   const CustomCardWidget({
@@ -29,7 +29,7 @@ class CustomCardWidget extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Icon(
-                  (book.ageBook! / 10000).floor() < 40
+                  (book.level! / 10000).floor() < 40
                       ? Icons.radio_button_unchecked
                       : Icons.verified,
                   color: AppColors.primaryColor,
@@ -46,23 +46,11 @@ class CustomCardWidget extends StatelessWidget {
                             color: AppColors.primaryColor,
                             fontWeight: FontWeight.w500),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          book.description!.substring(0, 20),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w500),
-                        ),
-                      ),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 2.0),
                         child: Text(
-                          (book.ageBook! / 10000).floor().toString(),
+                          (book.level!).toString(),
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium!

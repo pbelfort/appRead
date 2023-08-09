@@ -1,37 +1,34 @@
 import 'dart:convert';
 
+import 'package:app_read/app/domain/book_entity.dart';
+
 // userRegisterModel userRegisterModelFromJson(str) => userRegisterModel.fromJson(str);
 
 String userRegisterModelToJson(BookModel book) => json.encode(
       book.toJson(),
     );
 
-class BookModel {
+class BookModel extends BookEntity {
   BookModel({
-    required this.title,
-    required this.ageBook,
-    required this.description,
+    required super.uuidBook,
+    required super.title,
+    required super.level,
+    required super.description,
   });
 
-  final String? title;
-  final int? ageBook;
-  final String? description;
-
-  BookModel copyWith({
-    final String? title,
-    final int? ageBook,
-    final String? description,
-  }) {
-    return BookModel(
-      title: title ?? this.title,
-      ageBook: ageBook ?? this.ageBook,
-      description: description ?? this.description,
-    );
-  }
-
   Map<String, dynamic> toJson() => {
+        'uuidBook': uuidBook,
         'title': title,
-        'ageBook': ageBook,
+        'ageBook': level,
         'description': description,
       };
+
+  factory BookModel.fromMap(Map<String, dynamic> map) {
+    return BookModel(
+      uuidBook: map['id'],
+      title: map['title'],
+      level: map['level'],
+      description: map['description'],
+    );
+  }
 }

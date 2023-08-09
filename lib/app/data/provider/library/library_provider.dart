@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:app_read/app/data/model/book_model.dart';
+import 'package:app_read/app/domain/book_entity.dart';
 import 'package:get/get_connect.dart';
 
 import '../../../base/enviroment.dart';
@@ -12,7 +16,8 @@ class LibraryProvider extends GetConnect implements ILibraryProvider {
   }
 
   @override
-  Future<String> getAllBooks() async {
+  Future<List<BookEntity>> getAllBooks() async {
+    List<BookEntity> books = <BookEntity>[];
     try {
       final response = await http.get(
         Uri.parse('${AppEnviroment.baseUrl}/book/getAllBooks'),
@@ -21,9 +26,12 @@ class LibraryProvider extends GetConnect implements ILibraryProvider {
         },
       );
       if (response.statusCode == 200) {
-        return response.body;
+        final teste = jsonDecode(response.body)['bookList'] as List;
+        for (var book in teste) {
+          books.add(BookModel.fromMap(book));
+        }
       }
-      return '';
+      return books;
     } catch (e) {
       rethrow;
     }

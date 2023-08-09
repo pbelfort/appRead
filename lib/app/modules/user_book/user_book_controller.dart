@@ -11,8 +11,9 @@ class UserBookController extends GetxController {
   final mockList = List<BookModel>.generate(
     17,
     (index) => BookModel(
+      uuidBook: faker.guid.random.toString(),
       title: faker.lorem.word(),
-      ageBook: int.parse(faker.address.buildingNumber()),
+      level: int.parse(faker.address.buildingNumber()),
       description: faker.lorem
           .sentences(100)
           .toString()

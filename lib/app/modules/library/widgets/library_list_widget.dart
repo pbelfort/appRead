@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../theme/app_colors.dart';
+import '../../widgets/custom_card_widget.dart';
 import '../library_controller.dart';
 
 class LibraryItems extends GetView<LibraryController> {
@@ -27,16 +28,16 @@ class LibraryItems extends GetView<LibraryController> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              // ...controller.bookList.map(
-              //   (book) => CustomCardWidget(
-              //     action: () async => await controller.goToReadingPage(
-              //       title: book.title ?? '',
-              //       description: book.description ?? '',
-              //     ),
-              //     book: book,
-              //     icon: Icons.abc,
-              //   ),
-              // )
+              ...controller.bookList.map(
+                (book) => CustomCardWidget(
+                  action: () async => await controller.goToReadingPage(
+                    title: book.title ?? '',
+                    description: book.description ?? '',
+                  ),
+                  book: book,
+                  icon: Icons.abc,
+                ),
+              )
             ],
           ),
         ),

@@ -1,3 +1,5 @@
+import '../../../domain/book_entity.dart';
+
 abstract class ILibraryProvider {
-  Future<String> getAllBooks();
+  Future<List<BookEntity>> getAllBooks();
 }
