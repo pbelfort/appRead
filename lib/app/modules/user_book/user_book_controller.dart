@@ -1,12 +1,16 @@
 import 'package:app_read/app/data/model/book_model.dart';
 import 'package:app_read/app/routes/app_pages.dart';
+import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:faker/faker.dart';
 import 'package:get/get.dart';
+
+import '../../data/repository/register/i_user_register_repository.dart.dart';
 
 final faker = Faker();
 
 class UserBookController extends GetxController {
-  UserBookController();
+  final IUserRegisterRepository userRegisterRepository;
+  UserBookController({required this.userRegisterRepository});
 
   final mockList = List<BookModel>.generate(
     17,
@@ -37,5 +41,14 @@ class UserBookController extends GetxController {
         'book_description': description,
       },
     );
+  }
+
+  Future<void> logout() async {
+    final logout = await RegisterUsecases.signOut(
+      userRegisterRepository: userRegisterRepository,
+    );
+    if (logout == 200) {
+      Get.offAllNamed(Routes.LOGIN);
+    }
   }
 }

@@ -11,7 +11,11 @@ class RegisterBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<IUserRegisterProvider>(() => UserRegisterProvider());
     Get.lazyPut<IUserRegisterRepository>(
-        () => UserRegisterRepository(provider: Get.find()));
-    Get.put(RegisterController(userRegisterRepository: Get.find()));
+      () => UserRegisterRepository(
+        provider: Get.find(),
+      ),
+    );
+    Get.put(RegisterController(
+        userRegisterRepository: Get.find<IUserRegisterRepository>()));
   }
 }

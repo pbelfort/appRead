@@ -1,8 +1,9 @@
 import 'dart:convert';
+import 'package:app_read/app/data/model/user_register_model.dart';
+import 'package:app_read/app/domain/user_entity.dart';
 import 'package:get/get_connect.dart';
 
 import '../../../base/enviroment.dart';
-import '../../model/user_register_model.dart';
 import 'i_user_register_provider.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,7 +15,10 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
   }
 
   @override
-  Future<bool> registerUser(UserRegisterModel userRegisterModel) async {
+  Future<bool> registerUser({
+    required String email,
+    required String password,
+  }) async {
     try {
       final response = await http.post(
         Uri.parse('${AppEnviroment.baseUrl}/register'),
@@ -22,10 +26,7 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(
-          <String?, String?>{
-            'email': userRegisterModel.email,
-            'password': userRegisterModel.password
-          },
+          <String?, String?>{'email': email, 'password': password},
         ),
       );
       if (response.statusCode == 201) {
@@ -47,7 +48,7 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
     int responseStatusCode = 0;
     try {
       final response = await post(
-        Uri.parse('${AppEnviroment.baseUrl}/confirmsignup').toString(),
+        Uri.parse('${AppEnviroment.baseUrl}/register/confirmsignup').toString(),
         jsonEncode(
           <String, dynamic>{
             'data': {
@@ -74,5 +75,51 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
       statusCode: responseStatusCode,
       statusText: 'Error in api',
     );
+  }
+
+  @override
+  Future<UserEntity?> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await post(
+        Uri.parse('${AppEnviroment.baseUrl}/register/signIn').toString(),
+        jsonEncode({
+          'email': email,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final error = response.body['401'];
+
+        if (error != null) {
+          print(error);
+          return null;
+        }
+
+        //  final decodedResponse = jsonDecode(response.body['user']);
+
+        return UserModel.fromMap(response.body['user']);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return null;
+  }
+
+  @override
+  Future<int> signOut() async {
+    try {
+      final response = await post(
+        Uri.parse('${AppEnviroment.baseUrl}/register/signOut').toString(),
+        '',
+      );
+      return response.statusCode!;
+    } catch (e) {
+      print(e);
+    }
+    return 404;
   }
 }

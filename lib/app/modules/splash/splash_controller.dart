@@ -12,6 +12,6 @@ class SplashController extends GetxController {
   // ignore: always_declare_return_types
   _loading() async {
     await 2.5.delay();
-    return Get.offAllNamed(Routes.USER_BOOK);
+    return Get.offAllNamed(Routes.LOGIN);
   }
 }

@@ -1,41 +1,26 @@
-import 'dart:convert';
+import 'package:app_read/app/domain/user_entity.dart';
 
-// userRegisterModel userRegisterModelFromJson(str) => userRegisterModel.fromJson(str);
-
-String userRegisterModelToJson(UserRegisterModel data) =>
-    json.encode(data.toJson());
-
-class UserRegisterModel {
-  UserRegisterModel({
-    this.name,
-    this.email,
-    this.password,
-    this.token,
+class UserModel extends UserEntity {
+  UserModel({
+    required super.uuid,
+    required super.email,
+    required super.emailVerified,
+    required super.token,
   });
 
-  String? name;
-  String? email;
-  String? password;
-  String? token;
-
-  UserRegisterModel copyWith({
-    String? name,
-    String? email,
-    String? password,
-    String? token,
-  }) {
-    return UserRegisterModel(
-      name: name ?? this.name,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      token: token ?? this.token,
-    );
-  }
-
   Map<String, dynamic> toJson() => {
-        'name': name,
+        'name': uuid,
         'email': email,
-        'password': password,
+        'password': emailVerified,
         'token': token,
       };
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      uuid: map['uuid'],
+      email: map['email'],
+      emailVerified: map['email_verified'],
+      token: map['access_token'],
+    );
+  }
 }

@@ -26,8 +26,8 @@ class LibraryProvider extends GetConnect implements ILibraryProvider {
         },
       );
       if (response.statusCode == 200) {
-        final teste = jsonDecode(response.body)['bookList'] as List;
-        for (var book in teste) {
+        final decodedResponse = jsonDecode(response.body)['bookList'] as List;
+        for (var book in decodedResponse) {
           books.add(BookModel.fromMap(book));
         }
       }

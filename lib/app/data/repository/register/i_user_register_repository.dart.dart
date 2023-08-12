@@ -1,12 +1,21 @@
 import 'package:get/get.dart';
 
-import '../../model/user_register_model.dart';
+import '../../../domain/user_entity.dart';
 
 abstract class IUserRegisterRepository {
-  Future<bool> registerUser(UserRegisterModel userRegisterModel);
-  Future<Response<dynamic>> confirmToken(
-    String email,
-    String token,
-    String password,
-  );
+  Future<bool> registerUser({
+    required String email,
+    required String password,
+  });
+  Future<Response<dynamic>> confirmToken({
+    required String email,
+    required String token,
+    required String password,
+  });
+  Future<UserEntity?> signIn({
+    required String email,
+    required String password,
+  });
+
+  Future<int> signOut();
 }

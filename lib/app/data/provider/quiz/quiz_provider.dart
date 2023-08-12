@@ -32,8 +32,8 @@ class QuizProvider extends GetConnect implements IQuizProvider {
       );
 
       if (response.statusCode == 200) {
-        final teste = jsonDecode(response.body)['question'] as List;
-        for (var question in teste) {
+        final decodedResponse = jsonDecode(response.body)['question'] as List;
+        for (var question in decodedResponse) {
           questions.add(QuestionModel.fromMap(question));
         }
       }

@@ -64,9 +64,11 @@ class UserBookHeader extends GetView<UserBookController> {
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () async {
+                    await controller.logout();
+                  },
                   child: const Icon(
-                    Icons.abc,
+                    Icons.logout,
                     color: AppColors.primaryColor,
                     size: 30,
                   ),
