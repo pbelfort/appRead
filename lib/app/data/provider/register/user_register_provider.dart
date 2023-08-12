@@ -98,9 +98,6 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
           print(error);
           return null;
         }
-
-        //  final decodedResponse = jsonDecode(response.body['user']);
-
         return UserModel.fromMap(response.body['user']);
       }
     } catch (e) {
