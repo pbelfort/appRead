@@ -1,4 +1,4 @@
-import 'package:app_read/app/base/custom_controller.dart';
+import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/modules/quiz/quiz_page.dart';
 import 'package:get/get.dart';
 
@@ -6,7 +6,7 @@ import '../../data/repository/quiz/i_quiz_repository.dart.dart';
 import '../../domain/question_entity.dart';
 import '../../usecases/quiz/quiz_usecases.dart';
 
-class QuizController extends ICustomController {
+class QuizController extends IGlobalController {
   final String? uuidBook = Get.parameters['uuidBook'];
   final IQuizRepository iQuizRepository;
 

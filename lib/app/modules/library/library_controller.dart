@@ -1,11 +1,11 @@
-import 'package:app_read/app/base/custom_controller.dart';
+import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/library/library_usecases.dart';
 import 'package:get/get.dart';
 import '../../data/repository/library/i_library_repository.dart.dart';
 import '../../domain/book_entity.dart';
 
-class LibraryController extends ICustomController {
+class LibraryController extends IGlobalController {
   final ILibraryRepository iLibraryRepository;
 
   LibraryController({required this.iLibraryRepository});

@@ -1,4 +1,4 @@
-import 'package:app_read/app/base/custom_controller.dart';
+import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../../data/repository/register/i_user_register_repository.dart.dart';
 
-class LoginController extends ICustomController {
+class LoginController extends IGlobalController {
   final IUserRegisterRepository userRegisterRepository;
   // Form login
   final GlobalKey<FormState> formKeyLogin = GlobalKey<FormState>();

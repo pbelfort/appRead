@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
 
-abstract class ICustomController extends GetxController {
+abstract class IGlobalController extends GetxController {
   final RxBool showLoading = false.obs;
 }

@@ -1,10 +1,10 @@
-import 'package:app_read/app/base/custom_controller.dart';
+import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/domain/book_entity.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class ReadingController extends ICustomController {
+class ReadingController extends IGlobalController {
   final BookEntity book = Get.arguments['book'];
   @override
   Future<void> onInit() async {
