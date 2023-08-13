@@ -46,7 +46,6 @@ class QuizPage extends GetView<QuizController> {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               width: Get.width,
-                              height: 300,
                               decoration: BoxDecoration(
                                 color: AppColors.primaryColor,
                                 borderRadius:
