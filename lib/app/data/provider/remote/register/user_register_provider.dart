@@ -3,7 +3,7 @@ import 'package:app_read/app/data/model/user_register_model.dart';
 import 'package:app_read/app/domain/user_entity.dart';
 import 'package:get/get_connect.dart';
 
-import '../../../base/enviroment.dart';
+import '../../../../base/enviroment.dart';
 import 'i_user_register_provider.dart';
 import 'package:http/http.dart' as http;
 

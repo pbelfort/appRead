@@ -1,7 +1,7 @@
 import 'package:app_read/app/domain/user_entity.dart';
 import 'package:get/get.dart';
 
-import '../../provider/register/i_user_register_provider.dart';
+import '../../../provider/remote/register/i_user_register_provider.dart';
 import 'i_user_register_repository.dart.dart';
 
 class UserRegisterRepository implements IUserRegisterRepository {

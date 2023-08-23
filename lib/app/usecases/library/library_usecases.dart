@@ -1,4 +1,4 @@
-import '../../data/repository/library/i_library_repository.dart.dart';
+import '../../data/repository/remote/library/i_library_repository.dart.dart';
 import '../../domain/book_entity.dart';
 
 abstract class LibraryUsecases {

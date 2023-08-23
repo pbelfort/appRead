@@ -4,7 +4,7 @@ import 'package:app_read/app/data/model/book_model.dart';
 import 'package:app_read/app/domain/book_entity.dart';
 import 'package:get/get_connect.dart';
 
-import '../../../base/enviroment.dart';
+import '../../../../base/enviroment.dart';
 import 'i_library_provider.dart';
 import 'package:http/http.dart' as http;
 

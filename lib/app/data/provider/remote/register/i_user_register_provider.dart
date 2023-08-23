@@ -1,6 +1,6 @@
 import 'package:get/get_connect.dart';
 
-import '../../../domain/user_entity.dart';
+import '../../../../domain/user_entity.dart';
 
 // import 'package:gou_mobile_clientes/app/data/model/user/endereco_model.dart';
 

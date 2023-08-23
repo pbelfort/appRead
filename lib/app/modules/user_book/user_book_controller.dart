@@ -4,7 +4,7 @@ import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:faker/faker.dart';
 import 'package:get/get.dart';
 
-import '../../data/repository/register/i_user_register_repository.dart.dart';
+import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 
 final faker = Faker();
 
@@ -15,6 +15,7 @@ class UserBookController extends GetxController {
   final mockList = List<BookModel>.generate(
     17,
     (index) => BookModel(
+      id: 0,
       uuidBook: faker.guid.random.toString(),
       title: faker.lorem.word(),
       level: int.parse(faker.address.buildingNumber()),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../data/repository/register/i_user_register_repository.dart.dart';
+import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 
 class LoginController extends IGlobalController {
   final IUserRegisterRepository userRegisterRepository;

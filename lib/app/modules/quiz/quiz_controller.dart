@@ -2,7 +2,7 @@ import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/modules/quiz/quiz_page.dart';
 import 'package:get/get.dart';
 
-import '../../data/repository/quiz/i_quiz_repository.dart.dart';
+import '../../data/repository/remote/quiz/i_quiz_repository.dart.dart';
 import '../../domain/question_entity.dart';
 import '../../usecases/quiz/quiz_usecases.dart';
 

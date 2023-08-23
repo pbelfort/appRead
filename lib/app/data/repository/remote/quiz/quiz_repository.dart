@@ -1,5 +1,5 @@
 import 'package:app_read/app/domain/question_entity.dart';
-import '../../provider/quiz/i_quiz_provider.dart';
+import '../../../provider/remote/quiz/i_quiz_provider.dart';
 import 'i_quiz_repository.dart.dart';
 
 class QuizRepository implements IQuizRepository {

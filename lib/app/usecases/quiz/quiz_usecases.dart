@@ -1,4 +1,4 @@
-import 'package:app_read/app/data/repository/quiz/i_quiz_repository.dart.dart';
+import 'package:app_read/app/data/repository/remote/quiz/i_quiz_repository.dart.dart';
 
 import '../../domain/question_entity.dart';
 

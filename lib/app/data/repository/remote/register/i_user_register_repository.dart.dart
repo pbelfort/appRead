@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../domain/user_entity.dart';
+import '../../../../domain/user_entity.dart';
 
 abstract class IUserRegisterRepository {
   Future<bool> registerUser({

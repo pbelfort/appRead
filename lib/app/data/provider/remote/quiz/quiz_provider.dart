@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:app_read/app/data/model/question_model.dart';
 import 'package:get/get_connect.dart';
 
-import '../../../base/enviroment.dart';
-import '../../../domain/question_entity.dart';
+import '../../../../base/enviroment.dart';
+import '../../../../domain/question_entity.dart';
 import 'i_quiz_provider.dart';
 import 'package:http/http.dart' as http;
 

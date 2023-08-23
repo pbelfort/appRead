@@ -1,6 +1,6 @@
 import 'package:app_read/app/domain/user_entity.dart';
 
-import '../../data/repository/register/i_user_register_repository.dart.dart';
+import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 
 abstract class RegisterUsecases {
   static bool checkIsSpecialChar(String passTextController) {

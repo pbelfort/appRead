@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../../data/provider/quiz/i_quiz_provider.dart';
-import '../../data/provider/quiz/quiz_provider.dart';
-import '../../data/repository/quiz/i_quiz_repository.dart.dart';
-import '../../data/repository/quiz/quiz_repository.dart';
+import '../../data/provider/remote/quiz/i_quiz_provider.dart';
+import '../../data/provider/remote/quiz/quiz_provider.dart';
+import '../../data/repository/remote/quiz/i_quiz_repository.dart.dart';
+import '../../data/repository/remote/quiz/quiz_repository.dart';
 import 'quiz_controller.dart';
 
 class QuizBinding implements Bindings {
