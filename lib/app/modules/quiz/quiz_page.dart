@@ -85,7 +85,9 @@ class QuizPage extends GetView<QuizController> {
                                           .getSelectedOption(question),
                                       onChanged: (ChoiceOption? value) {
                                         controller.selectOption(
-                                            question, value!);
+                                          question: question,
+                                          option: value!,
+                                        );
                                       },
                                     ),
                                   ),
@@ -106,7 +108,9 @@ class QuizPage extends GetView<QuizController> {
                                           .getSelectedOption(question),
                                       onChanged: (ChoiceOption? value) {
                                         controller.selectOption(
-                                            question, value!);
+                                          question: question,
+                                          option: value!,
+                                        );
                                       },
                                     ),
                                   ),
@@ -127,7 +131,9 @@ class QuizPage extends GetView<QuizController> {
                                           .getSelectedOption(question),
                                       onChanged: (ChoiceOption? value) {
                                         controller.selectOption(
-                                            question, value!);
+                                          question: question,
+                                          option: value!,
+                                        );
                                       },
                                     ),
                                   ),
@@ -148,7 +154,9 @@ class QuizPage extends GetView<QuizController> {
                                           .getSelectedOption(question),
                                       onChanged: (ChoiceOption? value) {
                                         controller.selectOption(
-                                            question, value!);
+                                          question: question,
+                                          option: value!,
+                                        );
                                       },
                                     ),
                                   ),
@@ -171,14 +179,23 @@ class QuizPage extends GetView<QuizController> {
                                   color: AppColors.backgroundColor,
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: TextButton(
-                                      onPressed: controller.finishQuiz,
-                                      style: TextButton.styleFrom(
-                                        backgroundColor: AppColors.primaryColor,
-                                        foregroundColor: AppColors.white,
-                                      ),
-                                      child: const Text('Finalizar'),
-                                    ),
+                                    child: Obx(() {
+                                      return TextButton(
+                                        onPressed: !controller
+                                                .finishButtonEnabled.value
+                                            ? null
+                                            : controller.finishQuiz,
+                                        style: TextButton.styleFrom(
+                                          backgroundColor: !controller
+                                                  .finishButtonEnabled.value
+                                              ? AppColors.primaryColor
+                                                  .withAlpha(50)
+                                              : AppColors.primaryColor,
+                                          foregroundColor: AppColors.white,
+                                        ),
+                                        child: const Text('Finalizar'),
+                                      );
+                                    }),
                                   ),
                                 ),
                               ],

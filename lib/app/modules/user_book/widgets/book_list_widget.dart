@@ -34,12 +34,7 @@ class BookITems extends GetView<UserBookController> {
                 (book) => CustomCardWidget(
                   book: book,
                   icon: Icons.abc,
-                  action: () async {
-                    await controller.goToReadingPage(
-                      title: book.title ?? '',
-                      description: book.description ?? '',
-                    );
-                  },
+                  action: null,
                 ),
               )
             ],

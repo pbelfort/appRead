@@ -12,15 +12,15 @@ class QuizController extends IGlobalController {
   final String? uuidBook = Get.parameters['uuidBook'];
   final IQuestionRepository iQuestionRepository;
   final IQuizRepository iQuizRepository;
-
   List<QuestionEntity> questions = [];
   int score = 0;
   double percent = 0.0;
 
   // Define a Map to store selected options for each question
   final Map<QuestionEntity, ChoiceOption> selectedOptions = {};
-
   late QuizEntity? quizEntity;
+
+  RxBool finishButtonEnabled = false.obs;
 
   QuizController({
     required this.iQuestionRepository,
@@ -51,9 +51,13 @@ class QuizController extends IGlobalController {
   }
 
   // Method to update the selected option for a question
-  void selectOption(QuestionEntity question, ChoiceOption option) {
+  void selectOption({
+    required QuestionEntity question,
+    required ChoiceOption option,
+  }) {
     showLoading.value = true;
     selectedOptions[question] = option;
+    finishButtonEnabled.value = selectedOptions.length == questions.length;
     showLoading.value = false;
   }
 
