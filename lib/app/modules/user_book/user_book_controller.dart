@@ -1,31 +1,33 @@
-import 'package:app_read/app/data/model/book_model.dart';
+import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:faker/faker.dart';
 import 'package:get/get.dart';
 
+import '../../data/repository/local/quiz/i_quiz_local_repository.dart';
 import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
+import '../../domain/quiz_entity_db.dart';
 
 final faker = Faker();
 
-class UserBookController extends GetxController {
+class UserBookController extends IGlobalController {
   final IUserRegisterRepository userRegisterRepository;
-  UserBookController({required this.userRegisterRepository});
+  final IQuizLocalRepository iQuizLocalRepository;
+  UserBookController({
+    required this.userRegisterRepository,
+    required this.iQuizLocalRepository,
+  });
 
-  final mockList = List<BookModel>.generate(
-    17,
-    (index) => BookModel(
-      id: 0,
-      uuidBook: faker.guid.random.toString(),
-      title: faker.lorem.word(),
-      level: int.parse(faker.address.buildingNumber()),
-      description: faker.lorem
-          .sentences(100)
-          .toString()
-          .replaceAll('[', '')
-          .replaceAll(']', ''),
-    ),
-  );
+  late List readBookList = <QuizEntityDB>[];
+
+  @override
+  onInit() async {
+    showLoading.value = true;
+    readBookList = await iQuizLocalRepository.getAllQuizessFromDB();
+    showLoading.value = false;
+
+    super.onInit();
+  }
 
   goToLibraryPage() {
     Get.toNamed(Routes.LIBRARY);

@@ -7,7 +7,7 @@ class QuizModel extends QuizEntity {
     required super.grade,
   });
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toJson() => {
         'uuidQuiz': uuidQuiz,
         'uuidBook': uuidBook,
         'grade': grade,
@@ -17,7 +17,15 @@ class QuizModel extends QuizEntity {
     return QuizModel(
       uuidQuiz: map['id'],
       uuidBook: map['quizQuizBookId'],
-      grade: map['grade'],
+      grade: map['grade'] ?? 0,
+    );
+  }
+
+  factory QuizModel.fromEntity(QuizEntity quiz) {
+    return QuizModel(
+      uuidQuiz: quiz.uuidQuiz,
+      uuidBook: quiz.uuidBook,
+      grade: quiz.grade,
     );
   }
 }

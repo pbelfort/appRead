@@ -30,9 +30,9 @@ class BookITems extends GetView<UserBookController> {
           child: ListView(
             shrinkWrap: true,
             children: [
-              ...controller.mockList.map(
-                (book) => CustomCardWidget(
-                  book: book,
+              ...controller.readBookList.map(
+                (quiz) => CustomCardQuizWidget(
+                  quiz: quiz,
                   icon: Icons.abc,
                   action: null,
                 ),

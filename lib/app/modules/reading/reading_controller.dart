@@ -21,7 +21,10 @@ class ReadingController extends IGlobalController {
   void goToQuizPage() {
     Get.toNamed(
       Routes.QUIZ,
-      parameters: {'uuidBook': book.uuidBook},
+      parameters: {
+        'uuid_book': book.uuidBook,
+        'book_title': book.title!,
+      },
     );
   }
 

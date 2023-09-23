@@ -7,4 +7,9 @@ abstract class IQuizRepository {
   IQuizRepository({required this.provider});
 
   Future<QuizEntity?> getQuizByUuidBook(String uuidBook);
+
+  Future<bool> updateQuizGrade({
+    required String uuidQuiz,
+    required int grade,
+  });
 }

@@ -24,4 +24,16 @@ class CustomSharedPreferences {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('uuid_user', uuid);
   }
+
+  static Future<String?> get getScoreUser async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('score_user');
+  }
+
+  static Future<void> saveScoreUserInSharedPreferences({
+    required String score,
+  }) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('score_user', score);
+  }
 }

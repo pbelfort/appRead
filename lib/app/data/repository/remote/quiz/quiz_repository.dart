@@ -15,4 +15,15 @@ class QuizRepository implements IQuizRepository {
   Future<QuizEntity?> getQuizByUuidBook(String uuidBook) {
     return provider.getQuizByUuidBook(uuidBook);
   }
+
+  @override
+  Future<bool> updateQuizGrade({
+    required String uuidQuiz,
+    required int grade,
+  }) {
+    return provider.updateQuizGrade(
+      grade: grade,
+      uuidQuiz: uuidQuiz,
+    );
+  }
 }

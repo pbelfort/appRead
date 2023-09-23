@@ -7,5 +7,5 @@ class QuizEntity {
 
   final String uuidQuiz;
   final String uuidBook;
-  final int? grade;
+  final int grade;
 }
