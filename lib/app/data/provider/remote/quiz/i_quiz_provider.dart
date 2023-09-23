@@ -1,5 +1,5 @@
-import 'package:app_read/app/domain/question_entity.dart';
+import 'package:app_read/app/domain/quiz_entity.dart';
 
 abstract class IQuizProvider {
-  Future<List<QuestionEntity>> getAllQuestionsByQuiz(String uuidBook);
+  Future<QuizEntity?> getQuizByUuidBook(String uuidBook);
 }

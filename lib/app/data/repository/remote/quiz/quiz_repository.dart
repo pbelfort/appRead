@@ -1,14 +1,18 @@
-import 'package:app_read/app/domain/question_entity.dart';
-import '../../../provider/remote/quiz/i_quiz_provider.dart';
-import 'i_quiz_repository.dart.dart';
+import 'package:app_read/app/data/provider/remote/quiz/i_quiz_provider.dart';
+import 'package:app_read/app/domain/quiz_entity.dart';
+
+import 'i_quiz_repository.dart';
 
 class QuizRepository implements IQuizRepository {
+  @override
   final IQuizProvider provider;
-  QuizRepository({required this.provider});
+
+  QuizRepository({
+    required this.provider,
+  });
 
   @override
-  Future<List<QuestionEntity>> getAllQuestionsByQuiz(String uuidBook) async {
-    final response = await provider.getAllQuestionsByQuiz(uuidBook);
-    return response;
+  Future<QuizEntity?> getQuizByUuidBook(String uuidBook) {
+    return provider.getQuizByUuidBook(uuidBook);
   }
 }

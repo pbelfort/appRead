@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../data/provider/shared/custom_shared_preferences.dart';
 import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 
 class LoginController extends IGlobalController {
@@ -31,6 +32,12 @@ class LoginController extends IGlobalController {
     );
 
     if (user != null) {
+      CustomSharedPreferences.saveTokenInSharedPreferences(
+        token: user.token,
+      );
+      CustomSharedPreferences.saveUuidUserInSharedPreferences(
+        uuid: user.uuid,
+      );
       showLoading.value = false;
       Get.toNamed(Routes.HOME, arguments: {"user": user});
     }

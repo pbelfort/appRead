@@ -172,7 +172,7 @@ class QuizPage extends GetView<QuizController> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextButton(
-                                      onPressed: () => null,
+                                      onPressed: controller.finishQuiz,
                                       style: TextButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,
                                         foregroundColor: AppColors.white,

@@ -5,10 +5,10 @@ import 'package:get/get_connect.dart';
 
 import '../../../../base/enviroment.dart';
 import '../../../../domain/question_entity.dart';
-import 'i_quiz_provider.dart';
+import 'i_question_provider.dart';
 import 'package:http/http.dart' as http;
 
-class QuizProvider extends GetConnect implements IQuizProvider {
+class QuestionProvider extends GetConnect implements IQuestionProvider {
   @override
   void onInit() {
     httpClient.timeout = const Duration(seconds: 10);
