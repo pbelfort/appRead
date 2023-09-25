@@ -43,25 +43,6 @@ class UserBookHeader extends GetView<UserBookController> {
               ),
               const Spacer(),
               Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.abc,
-                    color: AppColors.primaryColor,
-                    size: 30,
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.abc,
-                  color: AppColors.primaryColor,
-                  size: 30,
-                ),
-              ),
-              Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: GestureDetector(
                   onTap: () async {
@@ -75,6 +56,27 @@ class UserBookHeader extends GetView<UserBookController> {
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 8.0,
+              top: 20,
+            ),
+            child: Obx(() {
+              if (controller.showLoading.value) {
+                return const CircularProgressIndicator(
+                  color: AppColors.primaryColor,
+                );
+              }
+
+              return Text(
+                'Score: ${controller.score}',
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+              );
+            }),
           ),
         ],
       ),

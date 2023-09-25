@@ -19,25 +19,33 @@ class BookITems extends GetView<UserBookController> {
       child: Container(
         decoration: const BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10),
+            topRight: Radius.circular(10),
           ),
         ),
         child: Padding(
           padding: const EdgeInsets.only(
             top: 10,
           ),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              ...controller.readBookList.map(
-                (quiz) => CustomCardQuizWidget(
-                  quiz: quiz,
-                  icon: Icons.abc,
-                  action: null,
-                ),
-              )
-            ],
+          child: Obx(
+            () {
+              if (controller.showLoading.value) {
+                return const SizedBox.shrink();
+              }
+              return ListView(
+                shrinkWrap: true,
+                children: [
+                  ...controller.readBookList.map(
+                    (quiz) => CustomCardQuizWidget(
+                      quiz: quiz,
+                      icon: Icons.abc,
+                      action: null,
+                    ),
+                  )
+                ],
+              );
+            },
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:app_read/app/base/global_controller.dart';
+import 'package:app_read/app/data/provider/shared/custom_shared_preferences.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:faker/faker.dart';
@@ -20,10 +21,13 @@ class UserBookController extends IGlobalController {
 
   late List readBookList = <QuizEntityDB>[];
 
+  String? score = '';
+
   @override
   onInit() async {
     showLoading.value = true;
     readBookList = await iQuizLocalRepository.getAllQuizessFromDB();
+    score = await CustomSharedPreferences.getScoreUser;
     showLoading.value = false;
 
     super.onInit();
