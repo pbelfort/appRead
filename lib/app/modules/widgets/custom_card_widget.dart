@@ -4,21 +4,21 @@ import '../../domain/quiz_entity_db.dart';
 import '../../theme/app_colors.dart';
 
 class CustomCardWidget extends StatelessWidget {
-  final IconData icon;
   final BookEntity book;
   final Function()? action;
+  final bool enabled;
 
   const CustomCardWidget({
     Key? key,
     required this.action,
     required this.book,
-    required this.icon,
+    required this.enabled,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: action,
+      onTap: enabled ? action : null,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,10 +29,10 @@ class CustomCardWidget extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Icon(
-                  (book.level! / 10000).floor() < 40
+                  enabled
                       ? Icons.radio_button_unchecked
-                      : Icons.verified,
-                  color: AppColors.primaryColor,
+                      : Icons.check_circle_outline_rounded,
+                  color: enabled ? AppColors.primaryColor : AppColors.darkGray,
                   size: 20,
                 ),
                 const SizedBox(width: 20),
@@ -43,20 +43,24 @@ class CustomCardWidget extends StatelessWidget {
                       Text(
                         book.title ?? '',
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w500),
+                              color: enabled
+                                  ? AppColors.primaryColor
+                                  : AppColors.darkGray,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
                       const Spacer(),
                       Padding(
                         padding: const EdgeInsets.only(right: 2.0),
                         child: Text(
                           (book.level!).toString(),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w500),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: enabled
+                                        ? AppColors.primaryColor
+                                        : AppColors.darkGray,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                         ),
                       ),
                       const SizedBox(height: 10),
@@ -96,7 +100,7 @@ class CustomCardQuizWidget extends StatelessWidget {
             margin: const EdgeInsets.symmetric(vertical: 15),
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Row(
-              children: <Widget>[
+              children: [
                 const SizedBox(width: 20),
                 Expanded(
                   child: Row(

@@ -70,7 +70,7 @@ class UserBookHeader extends GetView<UserBookController> {
               }
 
               return Text(
-                'Score: ${controller.score}',
+                'Score: ${controller.score ?? 0}',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w500,

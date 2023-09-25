@@ -135,7 +135,6 @@ class QuizController extends IGlobalController {
     );
 
     //get off all named home
-
     Get.offAllNamed(Routes.USER_BOOK);
   }
 }

@@ -33,13 +33,13 @@ class LibraryPage extends GetView<LibraryController> {
                 textInputEnable: true,
                 textInputUsernameVisible: true,
                 textInputPasswordVisible: false,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  controller.filterSearchResults(value);
+                },
                 keyboardType: TextInputType.emailAddress,
                 textCapitalization: TextCapitalization.none,
                 labelText: 'Pesquise pelo título do livro',
-                validator: (value) {
-                  return null;
-                },
+                textEditingController: controller.searchEditingController,
               ),
               const SizedBox(
                 height: 70,
