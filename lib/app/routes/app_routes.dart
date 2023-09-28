@@ -13,4 +13,5 @@ abstract class Routes {
   static const LIBRARY = '/library';
   static const READING_BOOK = '/reading_book';
   static const QUIZ = '/quiz';
+  static const ADMIN = '/admin';
 }

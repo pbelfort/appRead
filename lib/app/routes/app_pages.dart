@@ -5,6 +5,8 @@ import 'package:app_read/app/modules/reading/reading_page.dart';
 import 'package:app_read/app/modules/splash/splash_binding.dart';
 import 'package:app_read/app/modules/splash/splash_page.dart';
 import 'package:app_read/app/modules/user_book/user_book_page.dart';
+import '../modules/admin/admin_binding.dart';
+import '../modules/admin/admin_page.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_page.dart';
 import '../modules/initial/initial_binding.dart';
@@ -92,6 +94,13 @@ class AppPages {
       name: Routes.QUIZ,
       page: () => const QuizPage(),
       binding: QuizBinding(),
+    ),
+
+    //ADMIN PAGE
+    GetPage(
+      name: Routes.ADMIN,
+      page: () => const AdminPage(),
+      binding: AdminBinding(),
     ),
   ];
 }

@@ -95,13 +95,12 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
         final error = response.body['401'];
 
         if (error != null) {
-          print(error);
-          return null;
+          return error;
         }
         return UserModel.fromMap(response.body['user']);
       }
-    } catch (e) {
-      print(e);
+    } catch (_) {
+      //do nothing
     }
     return null;
   }
@@ -114,8 +113,8 @@ class UserRegisterProvider extends GetConnect implements IUserRegisterProvider {
         '',
       );
       return response.statusCode!;
-    } catch (e) {
-      print(e);
+    } catch (_) {
+      //do nothing
     }
     return 404;
   }

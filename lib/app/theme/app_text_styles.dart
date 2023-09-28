@@ -8,7 +8,7 @@ class AppTextStyles {
   static TextStyle textBold14 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w700,
-    color: AppColors.black,
+    color: AppColors.white,
   );
   static TextStyle textBold16 = TextStyle(
     fontSize: 16.sp,

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class HomePageController extends GetxController {
   void goToAdminPage() {
-    print('admin page');
+    Get.toNamed(Routes.ADMIN);
   }
 
   void goToUserBookPage() {

@@ -5,10 +5,14 @@ class AppColors {
 
   static const Color headerColor = Color(0xFF0B0E11);
   static const Color backgroundColor = Color(0xFF223b78);
+  static Color backgroundColorWithAlpha =
+      const Color(0xFF223b78).withAlpha(200);
 
   static const Color black = Color(0xFF000000);
 
   static const Color darkGray = Color(0xFF333333);
+  static const Color mediumDarkGray = Color(0xFF555555);
+
   static const Color disabled = Color(0xFF161C22);
 
   static const Color mediumGray = Color.fromARGB(255, 216, 213, 213);
