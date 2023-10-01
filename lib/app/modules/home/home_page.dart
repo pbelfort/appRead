@@ -36,39 +36,61 @@ class HomePage extends GetView<HomePageController> {
                       backgroundColor: AppColors.primaryColor,
                     )
                   : SizedBox(
-                      height: 100.0,
+                      height: 350.0,
                       child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
+                        scrollDirection: Axis.vertical,
                         itemCount: controller.childList.length,
                         itemBuilder: (context, index) {
                           return InkWell(
                             onTap: () => controller.goToUserBookPage(
                               controller.childList[index],
                             ),
-                            child: SizedBox(
-                              width: 100.0,
-                              child: Card(
-                                color: AppColors.primaryColor,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const CircleAvatar(
-                                        backgroundColor: AppColors.white,
-                                        child: Icon(
-                                          Icons.child_care,
-                                          color: AppColors.primaryColor,
-                                        )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 12.0),
-                                      child: Text(
-                                        controller.childList[index].childName,
-                                        style: const TextStyle(
-                                          color: AppColors.white,
+                            child: Card(
+                              color: AppColors.primaryColor,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(top: 22.0),
+                                          child: CircleAvatar(
+                                            backgroundColor: AppColors.white,
+                                            child: Icon(
+                                              Icons.child_care,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 10.0,
+                                            bottom: 10,
+                                          ),
+                                          child: Text(
+                                            controller
+                                                .childList[index].childName,
+                                            style: const TextStyle(
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  const Padding(
+                                    padding: EdgeInsets.all(20.0),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios_rounded,
+                                      color: AppColors.white,
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           );

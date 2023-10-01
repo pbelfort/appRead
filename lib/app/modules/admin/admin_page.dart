@@ -20,7 +20,7 @@ class AdminPage extends GetView<AdminController> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: const Text(
-                    'Oeschinen Lake Campground',
+                    'Aproveitamento',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: AppColors.white,
@@ -28,7 +28,7 @@ class AdminPage extends GetView<AdminController> {
                   ),
                 ),
                 const Text(
-                  'Kandersteg, Switzerland',
+                  'Acompanhe a evolução das crianças',
                   style: TextStyle(
                     color: AppColors.white,
                   ),
@@ -36,20 +36,27 @@ class AdminPage extends GetView<AdminController> {
               ],
             ),
           ),
-          /*3*/
           Icon(
             Icons.star,
             color: Colors.red[500],
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 4.0),
-            child: Text(
-              '41',
-              style: TextStyle(
-                color: AppColors.white,
-              ),
-            ),
-          ),
+          Obx(() => controller.showLoading.value
+              ? const SizedBox(
+                  height: 10,
+                  width: 10,
+                  child: CircularProgressIndicator(
+                    color: AppColors.primaryColor,
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Text(
+                    '${controller.totalChildScore}%',
+                    style: const TextStyle(
+                      color: AppColors.white,
+                    ),
+                  ),
+                )),
         ],
       ),
     );
@@ -79,12 +86,10 @@ class AdminPage extends GetView<AdminController> {
 
     Widget textSection = Container(
       padding: const EdgeInsets.all(32),
-      child: const Text(
-        'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
-        'Alps. Situated 1,578 meters above sea level, it is one of the '
-        'larger Alpine Lakes. A gondola ride from Kandersteg, followed by a ',
+      child: Text(
+        controller.evolutionText(),
         softWrap: true,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppColors.white,
         ),
       ),
@@ -120,27 +125,54 @@ class AdminPage extends GetView<AdminController> {
                         itemCount: controller.childList.length,
                         itemBuilder: (context, index) {
                           return SizedBox(
-                            width: 100.0,
+                            width: 140.0,
                             child: Card(
                               color: AppColors.primaryColor,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const CircleAvatar(
-                                      backgroundColor: AppColors.white,
-                                      child: Icon(
-                                        Icons.child_care,
-                                        color: AppColors.primaryColor,
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 12.0),
-                                    child: Text(
-                                      controller.childList[index].childName,
-                                      style: const TextStyle(
-                                        color: AppColors.white,
-                                      ),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                            top: 12.0,
+                                            left: 4,
+                                          ),
+                                          child: CircleAvatar(
+                                            backgroundColor: AppColors.white,
+                                            child: Icon(
+                                              Icons.child_care,
+                                              color: AppColors.primaryColor,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 12.0,
+                                            left: 4,
+                                          ),
+                                          child: Text(
+                                            controller
+                                                .childList[index].childName,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  )
+                                  ),
+                                  const IconButton(
+                                      onPressed: null,
+                                      icon: Icon(
+                                        Icons.delete,
+                                      ))
                                 ],
                               ),
                             ),
@@ -154,10 +186,10 @@ class AdminPage extends GetView<AdminController> {
             child: titleSection,
           ),
           SliverToBoxAdapter(
-            child: buttonSection,
+            child: textSection,
           ),
           SliverToBoxAdapter(
-            child: textSection,
+            child: buttonSection,
           ),
         ],
       ),

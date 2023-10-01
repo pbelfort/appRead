@@ -6,24 +6,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../data/provider/shared/custom_shared_preferences.dart';
+import '../../data/repository/local/quiz/i_quiz_local_repository.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
+import '../../usecases/quiz/quiz_usecases.dart';
 
 class AdminController extends IGlobalController {
   final IChildRepository iChildRepository;
+  final IQuizLocalRepository iQuizLocalRepository;
 
   late final String? fatherUuid;
+  int totalChildScore = 0;
   final childNameController = TextEditingController();
   final childAgeController = TextEditingController();
   List<ChildEntity> childList = <ChildEntity>[];
 
-  AdminController({required this.iChildRepository});
+  AdminController({
+    required this.iChildRepository,
+    required this.iQuizLocalRepository,
+  });
 
   @override
   Future<void> onInit() async {
     showLoading.value = true;
 
     fatherUuid = await CustomSharedPreferences.getUuidUser;
+
+    final quizes = await QuizUsecases.getQuizesFromDB(iQuizLocalRepository);
+    int quizesPercent = quizes.length * 100;
+    totalChildScore = (((quizes
+                    .map((e) => e.grade)
+                    .reduce((value, element) => value + element)) /
+                quizesPercent) *
+            100)
+        .toInt();
 
     if (fatherUuid != null) {
       childList = await ChildUsecases.getChildsFromFatherUuid(
@@ -39,11 +55,23 @@ class AdminController extends IGlobalController {
   Future<void> onReady() async {
     childNameController.clear();
     childAgeController.clear();
+
     super.onReady();
   }
 
   void goToChildFormFillPage() {
     Get.toNamed(Routes.CHILD_FORM_FILL);
+  }
+
+  String evolutionText() {
+    if (totalChildScore < 30) return 'As crianças precisam de ler mais livros';
+    if (totalChildScore > 30 && totalChildScore < 60) {
+      return 'As crianças estão indo bem, mas precisam melhorar';
+    }
+    if (totalChildScore > 60 && totalChildScore < 80) {
+      return 'Muito bem... As crianças estão aprendendo bastante';
+    }
+    return 'O nível de aprendizado está excelente! Continuem assim! :)';
   }
 
   Future<void> regiterChild() async {
