@@ -7,14 +7,11 @@ import 'package:app_read/app/modules/splash/splash_page.dart';
 import 'package:app_read/app/modules/user_book/user_book_page.dart';
 import '../modules/admin/admin_binding.dart';
 import '../modules/admin/admin_page.dart';
+import '../modules/admin/widgets/child_form_fill.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_page.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_page.dart';
-import '../modules/register/1_form_register/register_binding.dart';
-import '../modules/register/1_form_register/register_page.dart';
-import '../modules/register/2_token/token_binding.dart';
-import '../modules/register/2_token/token_page.dart';
 import '../modules/quiz/quiz_binding.dart';
 import '../modules/quiz/quiz_page.dart';
 import '../modules/user_book/user_book_binding.dart';
@@ -36,20 +33,6 @@ class AppPages {
       name: Routes.HOME,
       page: () => const HomePage(),
       binding: HomeBinding(),
-    ),
-
-    //REGISTER PAGE
-    GetPage(
-      name: Routes.REGISTER,
-      page: () => const RegisterPage(),
-      binding: RegisterBinding(),
-    ),
-
-    //TOKEN PAGE
-    GetPage(
-      name: Routes.TOKEN,
-      page: () => const TokenPage(),
-      binding: TokenBinding(),
     ),
 
     //LOGIN PAGE
@@ -91,6 +74,13 @@ class AppPages {
     GetPage(
       name: Routes.ADMIN,
       page: () => const AdminPage(),
+      binding: AdminBinding(),
+    ),
+
+    //CHILD FILL PAGE
+    GetPage(
+      name: Routes.CHILD_FORM_FILL,
+      page: () => const ChildFormFillPage(),
       binding: AdminBinding(),
     ),
   ];
