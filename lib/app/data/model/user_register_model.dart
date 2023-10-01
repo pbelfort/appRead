@@ -4,14 +4,12 @@ class UserModel extends UserEntity {
   UserModel({
     required super.uuid,
     required super.email,
-    required super.emailVerified,
     required super.token,
   });
 
   Map<String, dynamic> toJson() => {
         'name': uuid,
         'email': email,
-        'password': emailVerified,
         'token': token,
       };
 
@@ -19,7 +17,6 @@ class UserModel extends UserEntity {
     return UserModel(
       uuid: map['uuid'],
       email: map['email'],
-      emailVerified: map['email_verified'],
       token: map['access_token'],
     );
   }

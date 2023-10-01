@@ -35,9 +35,11 @@ class LoginController extends IGlobalController {
       CustomSharedPreferences.saveTokenInSharedPreferences(
         token: user.token,
       );
+
       CustomSharedPreferences.saveUuidUserInSharedPreferences(
         uuid: user.uuid,
       );
+
       showLoading.value = false;
       Get.toNamed(Routes.HOME, arguments: {"user": user});
     }

@@ -2,19 +2,12 @@ import 'dart:convert';
 
 import 'package:app_read/app/data/model/book_model.dart';
 import 'package:app_read/app/domain/book_entity.dart';
-import 'package:get/get_connect.dart';
 
 import '../../../../base/enviroment.dart';
 import 'i_library_provider.dart';
 import 'package:http/http.dart' as http;
 
-class LibraryProvider extends GetConnect implements ILibraryProvider {
-  @override
-  void onInit() {
-    httpClient.timeout = const Duration(seconds: 10);
-    super.onInit();
-  }
-
+class LibraryProvider implements ILibraryProvider {
   @override
   Future<List<BookEntity>> getAllBooks() async {
     List<BookEntity> books = <BookEntity>[];

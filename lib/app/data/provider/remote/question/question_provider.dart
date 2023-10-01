@@ -1,20 +1,12 @@
 import 'dart:convert';
 
 import 'package:app_read/app/data/model/question_model.dart';
-import 'package:get/get_connect.dart';
-
 import '../../../../base/enviroment.dart';
 import '../../../../domain/question_entity.dart';
 import 'i_question_provider.dart';
 import 'package:http/http.dart' as http;
 
-class QuestionProvider extends GetConnect implements IQuestionProvider {
-  @override
-  void onInit() {
-    httpClient.timeout = const Duration(seconds: 10);
-    super.onInit();
-  }
-
+class QuestionProvider implements IQuestionProvider {
   @override
   Future<List<QuestionEntity>> getAllQuestionsByQuiz(String uuidBook) async {
     List<QuestionEntity> questions = <QuestionEntity>[];

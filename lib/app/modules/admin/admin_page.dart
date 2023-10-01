@@ -1,10 +1,10 @@
-import 'package:app_read/app/modules/splash/splash_controller.dart';
+import 'package:app_read/app/modules/admin/admin_controller.dart';
 import 'package:app_read/app/theme/app_colors.dart';
 import 'package:app_read/app/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AdminPage extends GetView<SplashController> {
+class AdminPage extends GetView<AdminController> {
   const AdminPage({Key? key}) : super(key: key);
 
   @override
@@ -60,7 +60,9 @@ class AdminPage extends GetView<SplashController> {
         _buildButtonColumn(
           icon: Icons.add,
           label: 'ADICIONAR',
-          action: () {},
+          action: () {
+            controller.goToChildFormFillPage();
+          },
         ),
         _buildButtonColumn(
           icon: Icons.person_2_rounded,
@@ -106,41 +108,45 @@ class AdminPage extends GetView<SplashController> {
             ),
           ),
           SliverToBoxAdapter(
-            child: SizedBox(
-              height: 100.0,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return SizedBox(
-                    width: 100.0,
-                    child: Card(
-                      color: AppColors.primaryColor,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const CircleAvatar(
-                              backgroundColor: AppColors.white,
-                              child: Icon(
-                                Icons.child_care,
-                                color: AppColors.primaryColor,
-                              )),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 12.0),
-                            child: Text(
-                              'Child ${index + 1}',
-                              style: const TextStyle(
-                                color: AppColors.white,
-                              ),
+            child: Obx(() => controller.showLoading.value
+                ? LinearProgressIndicator(
+                    backgroundColor: AppColors.primaryColor,
+                  )
+                : SizedBox(
+                    height: 100.0,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.childList.length,
+                      itemBuilder: (context, index) {
+                        return SizedBox(
+                          width: 100.0,
+                          child: Card(
+                            color: AppColors.primaryColor,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const CircleAvatar(
+                                    backgroundColor: AppColors.white,
+                                    child: Icon(
+                                      Icons.child_care,
+                                      color: AppColors.primaryColor,
+                                    )),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 12.0),
+                                  child: Text(
+                                    controller.childList[index].childName,
+                                    style: const TextStyle(
+                                      color: AppColors.white,
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
-            ),
+                  )),
           ),
           SliverToBoxAdapter(
             child: titleSection,
