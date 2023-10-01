@@ -9,8 +9,6 @@ import '../modules/admin/admin_binding.dart';
 import '../modules/admin/admin_page.dart';
 import '../modules/home/home_binding.dart';
 import '../modules/home/home_page.dart';
-import '../modules/initial/initial_binding.dart';
-import '../modules/initial/initial_page.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_page.dart';
 import '../modules/register/1_form_register/register_binding.dart';
@@ -38,13 +36,6 @@ class AppPages {
       name: Routes.HOME,
       page: () => const HomePage(),
       binding: HomeBinding(),
-    ),
-
-    //INITIAL PAGE
-    GetPage(
-      name: Routes.INITIAL,
-      page: () => const InitialPage(),
-      binding: InitialBinding(),
     ),
 
     //REGISTER PAGE

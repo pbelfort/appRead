@@ -2,14 +2,11 @@ import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/data/provider/shared/custom_shared_preferences.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/register/register_usecases.dart';
-import 'package:faker/faker.dart';
 import 'package:get/get.dart';
 
 import '../../data/repository/local/quiz/i_quiz_local_repository.dart';
 import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 import '../../domain/quiz_entity_db.dart';
-
-final faker = Faker();
 
 class UserBookController extends IGlobalController {
   final IUserRegisterRepository userRegisterRepository;
