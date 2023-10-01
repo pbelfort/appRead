@@ -79,7 +79,10 @@ class AdminPage extends GetView<AdminController> {
         _buildButtonColumn(
           icon: Icons.logout_outlined,
           label: 'SAIR',
-          action: () {},
+          action: () => controller.showCustomDialog(
+              context: context,
+              message: 'Deseja realmente sair?',
+              yesFunction: () {}),
         ),
       ],
     );
@@ -168,9 +171,15 @@ class AdminPage extends GetView<AdminController> {
                                       ],
                                     ),
                                   ),
-                                  const IconButton(
-                                      onPressed: null,
-                                      icon: Icon(
+                                  IconButton(
+                                      onPressed: () =>
+                                          controller.showCustomDialog(
+                                            context: context,
+                                            message:
+                                                'Deseja deletar este usuário?',
+                                            yesFunction: () {},
+                                          ),
+                                      icon: const Icon(
                                         Icons.delete,
                                       ))
                                 ],

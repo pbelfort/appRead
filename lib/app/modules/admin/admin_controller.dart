@@ -10,6 +10,7 @@ import '../../data/repository/local/quiz/i_quiz_local_repository.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/app_colors.dart';
 import '../../usecases/quiz/quiz_usecases.dart';
+import '../widgets/dialogs/custom_dialog.dart';
 
 class AdminController extends IGlobalController {
   final IChildRepository iChildRepository;
@@ -110,5 +111,18 @@ class AdminController extends IGlobalController {
     }
 
     showLoading.value = false;
+  }
+
+  Future<bool> showCustomDialog(
+      {required BuildContext context,
+      required String message,
+      required Function() yesFunction}) async {
+    return await showDialog(
+      context: context,
+      builder: (BuildContext context) => CustomAlertDialog(
+        title: message,
+        yesFunction: yesFunction,
+      ),
+    ).then((value) => true);
   }
 }
