@@ -2,6 +2,7 @@ import 'package:app_read/app/modules/user_book/user_book_controller.dart';
 import 'package:app_read/app/modules/user_book/widgets/body_widget.dart';
 import 'package:app_read/app/modules/user_book/widgets/header_widget.dart';
 import 'package:app_read/app/modules/user_book/widgets/book_list_widget.dart';
+import 'package:app_read/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class UserBookPage extends GetView<UserBookController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(action: () => Get.offAllNamed(Routes.HOME)),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(

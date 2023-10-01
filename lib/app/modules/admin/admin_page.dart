@@ -108,45 +108,47 @@ class AdminPage extends GetView<AdminController> {
             ),
           ),
           SliverToBoxAdapter(
-            child: Obx(() => controller.showLoading.value
-                ? LinearProgressIndicator(
-                    backgroundColor: AppColors.primaryColor,
-                  )
-                : SizedBox(
-                    height: 100.0,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.childList.length,
-                      itemBuilder: (context, index) {
-                        return SizedBox(
-                          width: 100.0,
-                          child: Card(
-                            color: AppColors.primaryColor,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const CircleAvatar(
-                                    backgroundColor: AppColors.white,
-                                    child: Icon(
-                                      Icons.child_care,
-                                      color: AppColors.primaryColor,
-                                    )),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 12.0),
-                                  child: Text(
-                                    controller.childList[index].childName,
-                                    style: const TextStyle(
-                                      color: AppColors.white,
+            child: Obx(
+              () => controller.showLoading.value
+                  ? const LinearProgressIndicator(
+                      backgroundColor: AppColors.primaryColor,
+                    )
+                  : SizedBox(
+                      height: 100.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.childList.length,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            width: 100.0,
+                            child: Card(
+                              color: AppColors.primaryColor,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const CircleAvatar(
+                                      backgroundColor: AppColors.white,
+                                      child: Icon(
+                                        Icons.child_care,
+                                        color: AppColors.primaryColor,
+                                      )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 12.0),
+                                    child: Text(
+                                      controller.childList[index].childName,
+                                      style: const TextStyle(
+                                        color: AppColors.white,
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  )),
+            ),
           ),
           SliverToBoxAdapter(
             child: titleSection,

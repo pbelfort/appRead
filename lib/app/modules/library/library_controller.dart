@@ -13,6 +13,8 @@ class LibraryController extends IGlobalController {
   final ILibraryRepository iLibraryRepository;
   final IQuizLocalRepository iQuizLocalRepository;
 
+  String? get uuidChild => Get.parameters['uuid_child'];
+
   LibraryController({
     required this.iLibraryRepository,
     required this.iQuizLocalRepository,
@@ -40,6 +42,9 @@ class LibraryController extends IGlobalController {
       Routes.READING_BOOK,
       arguments: {
         'book': book,
+      },
+      parameters: {
+        'uuid_child': uuidChild ?? '',
       },
     );
   }

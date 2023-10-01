@@ -1,5 +1,6 @@
 import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/data/provider/shared/custom_shared_preferences.dart';
+import 'package:app_read/app/domain/child_entity.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/register/register_usecases.dart';
 import 'package:get/get.dart';
@@ -16,33 +17,27 @@ class UserBookController extends IGlobalController {
     required this.iQuizLocalRepository,
   });
 
-  late List readBookList = <QuizEntityDB>[];
+  late List<QuizEntityDB> readBookList = <QuizEntityDB>[];
 
   String? score = '';
+
+  ChildEntity get child => Get.arguments['child'];
 
   @override
   onInit() async {
     showLoading.value = true;
     readBookList = await iQuizLocalRepository.getAllQuizessFromDB();
-    score = await CustomSharedPreferences.getScoreUser;
+    readBookList.removeWhere((element) => element.uuidChild != child.uuidChild);
+    score = await CustomSharedPreferences.getScoreUser(child.uuidChild!);
     showLoading.value = false;
-
     super.onInit();
   }
 
   goToLibraryPage() {
-    Get.toNamed(Routes.LIBRARY);
-  }
-
-  Future<void> goToReadingPage({
-    required String title,
-    required String description,
-  }) async {
-    await Get.toNamed(
-      Routes.READING_BOOK,
+    Get.toNamed(
+      Routes.LIBRARY,
       parameters: {
-        'book_title': title,
-        'book_description': description,
+        'uuid_child': child.uuidChild ?? '',
       },
     );
   }

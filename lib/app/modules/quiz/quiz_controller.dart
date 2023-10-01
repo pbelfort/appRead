@@ -15,6 +15,7 @@ import '../../usecases/quiz/quiz_usecases.dart';
 class QuizController extends IGlobalController {
   final String? uuidBook = Get.parameters['uuid_book'];
   final String? bookName = Get.parameters['book_title'];
+  final String? uuidChild = Get.parameters['uuid_child'];
 
   final IQuestionRepository iQuestionRepository;
   final IQuizRepository iQuizRepository;
@@ -110,6 +111,7 @@ class QuizController extends IGlobalController {
         await QuizUsecases.saveQuizInDB(
           iQuizLocalRepository: iQuizLocalRepository,
           quizEntity: QuizEntityDB(
+            uuidChild: uuidChild!,
             bookName: bookName!,
             grade: grade,
           ),
@@ -121,6 +123,8 @@ class QuizController extends IGlobalController {
 
     final quizes = await QuizUsecases.getQuizesFromDB(iQuizLocalRepository);
 
+    quizes.removeWhere((element) => element.uuidChild != uuidChild!);
+
     int quizesPercent = quizes.length * 100;
 
     final score = (((quizes
@@ -131,6 +135,7 @@ class QuizController extends IGlobalController {
         .toInt();
 
     CustomSharedPreferences.saveScoreUserInSharedPreferences(
+      uuidChild: uuidChild!,
       score: score.toString(),
     );
 

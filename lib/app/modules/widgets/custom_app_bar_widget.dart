@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../theme/app_colors.dart';
 
 class CustomAppBarWidget extends StatelessWidget
     implements PreferredSizeWidget {
-  const CustomAppBarWidget({super.key});
+  final Function() action;
+  const CustomAppBarWidget({super.key, required this.action});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       leading: IconButton(
-        onPressed: () {
-          Get.back();
-        },
+        onPressed: action,
         icon: const Icon(
           Icons.arrow_back,
         ),

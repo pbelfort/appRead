@@ -21,7 +21,7 @@ class UserBookHeader extends GetView<UserBookController> {
               CircleAvatar(
                 backgroundColor: AppColors.primaryColor,
                 child: Text(
-                  'P',
+                  controller.child.childName[0],
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: AppColors.white,
                         fontSize: 20,
@@ -34,7 +34,7 @@ class UserBookHeader extends GetView<UserBookController> {
                   left: 8.0,
                 ),
                 child: Text(
-                  'Olá Pedro!',
+                  'Olá ${controller.child.childName}!',
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
@@ -77,6 +77,18 @@ class UserBookHeader extends GetView<UserBookController> {
                     ),
               );
             }),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 8.0,
+            ),
+            child: Text(
+              controller.child.uuidChild ?? '',
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
           ),
         ],
       ),

@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 
 class ReadingController extends IGlobalController {
   final BookEntity book = Get.arguments['book'];
+
+  String? get uuidChild => Get.parameters['uuid_child'];
+
   @override
   Future<void> onInit() async {
     // await setLandScapeDeviceOrientation();
@@ -24,6 +27,7 @@ class ReadingController extends IGlobalController {
       parameters: {
         'uuid_book': book.uuidBook,
         'book_title': book.title!,
+        'uuid_child': uuidChild ?? ''
       },
     );
   }

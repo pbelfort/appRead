@@ -13,7 +13,7 @@ class ReadingPage extends GetView<ReadingController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: const CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(action: Get.back),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [

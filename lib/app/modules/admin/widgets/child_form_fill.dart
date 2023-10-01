@@ -12,7 +12,7 @@ class ChildFormFillPage extends GetView<AdminController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(action: Get.back),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(

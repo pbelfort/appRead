@@ -49,8 +49,9 @@ class LibraryItems extends GetView<LibraryController> {
               book: book,
             ),
             book: book,
-            enabled: !controller.quizes
-                .any((element) => element.bookName == book.title),
+            enabled: !controller.quizes.any((element) =>
+                element.bookName == book.title &&
+                element.uuidChild == controller.uuidChild),
           ),
         )
       ],

@@ -20,7 +20,7 @@ class QuizPage extends GetView<QuizController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: const CustomAppBarWidget(),
+      appBar: CustomAppBarWidget(action: Get.back),
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [

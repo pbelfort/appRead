@@ -1,8 +1,5 @@
-import 'package:app_read/app/modules/home/widgets/home_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-
 import '../../theme/app_colors.dart';
 import 'home_controller.dart';
 
@@ -12,42 +9,72 @@ class HomePage extends GetView<HomePageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          onPressed: controller.goToAdminPage,
+          backgroundColor: AppColors.primaryColor,
+          child: const Icon(Icons.admin_panel_settings)),
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Lottie.asset(
-                'lib/app/assets/bookLogo.json',
-                width: 100,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          const SliverAppBar(
+            backgroundColor: AppColors.backgroundColor,
+            pinned: true,
+            expandedHeight: 360.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text('Oba! Vamos ler um pouco?'),
+              background: Icon(
+                Icons.menu_book_rounded,
+                size: 200,
+                color: AppColors.primaryColor,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 50.0),
-            child: Text(
-              'Oba! Vamos ler um pouco?',
-              style: TextStyle(color: AppColors.primaryColor),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                HomeCardWidget(
-                  cardFunctionCalback: controller.goToUserBookPage,
-                  cardWidgetIcon: Icons.person,
-                  cardTitle: 'Pedro',
-                ),
-                HomeCardWidget(
-                  cardFunctionCalback: controller.goToAdminPage,
-                  cardWidgetIcon: Icons.admin_panel_settings,
-                  cardTitle: 'Admin',
-                ),
-              ],
+          SliverToBoxAdapter(
+            child: Obx(
+              () => controller.showLoading.value
+                  ? const LinearProgressIndicator(
+                      backgroundColor: AppColors.primaryColor,
+                    )
+                  : SizedBox(
+                      height: 100.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.childList.length,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            onTap: () => controller.goToUserBookPage(
+                              controller.childList[index],
+                            ),
+                            child: SizedBox(
+                              width: 100.0,
+                              child: Card(
+                                color: AppColors.primaryColor,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const CircleAvatar(
+                                        backgroundColor: AppColors.white,
+                                        child: Icon(
+                                          Icons.child_care,
+                                          color: AppColors.primaryColor,
+                                        )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 12.0),
+                                      child: Text(
+                                        controller.childList[index].childName,
+                                        style: const TextStyle(
+                                          color: AppColors.white,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
             ),
           ),
         ],
