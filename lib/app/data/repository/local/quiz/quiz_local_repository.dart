@@ -23,4 +23,9 @@ class QuizLocalRepository implements IQuizLocalRepository {
   Future<List<QuizEntityDB>> getAllQuizessFromDB() {
     return provider.getAllQuizessFromDB();
   }
+
+  @override
+  Future<bool> deleteUserQuizFromDB(String uuidChild) {
+    return provider.deleteUserQuizFromDB(uuidChild);
+  }
 }

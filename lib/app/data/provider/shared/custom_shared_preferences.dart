@@ -37,4 +37,11 @@ class CustomSharedPreferences {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(uuidChild, score);
   }
+
+  static Future<void> deleteScoreUserInSharedPreferences({
+    required String uuidChild,
+  }) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove(uuidChild);
+  }
 }

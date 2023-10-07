@@ -102,11 +102,11 @@ class AdminPage extends GetView<AdminController> {
       backgroundColor: AppColors.backgroundColorWithAlpha,
       body: CustomScrollView(
         slivers: <Widget>[
-          const SliverAppBar(
+          SliverAppBar(
             backgroundColor: AppColors.backgroundColor,
             pinned: true,
             expandedHeight: 360.0,
-            flexibleSpace: FlexibleSpaceBar(
+            flexibleSpace: const FlexibleSpaceBar(
               title: Text('Painel de Administrador'),
               background: Icon(
                 Icons.admin_panel_settings,
@@ -114,6 +114,11 @@ class AdminPage extends GetView<AdminController> {
                 color: AppColors.primaryColor,
               ),
             ),
+            leading: IconButton(
+                onPressed: () => controller.goBackToHome(),
+                icon: const Icon(
+                  Icons.arrow_back_ios_rounded,
+                )),
           ),
           SliverToBoxAdapter(
             child: Obx(

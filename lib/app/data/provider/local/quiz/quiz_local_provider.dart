@@ -55,4 +55,28 @@ class QuizLocalProvider implements IQuizLocalProvider {
     }
     return dbListquizs;
   }
+
+  @override
+  Future<bool> deleteUserQuizFromDB(String uuidChild) async {
+    List<QuizEntityDB> dbListquizs = <QuizEntityDB>[];
+
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? quizString = prefs.getString('quiz_list');
+
+    if (quizString != null) {
+      dbListquizs = QuizModelDB.decodeQuizEntity(quizString);
+      final newList =
+          dbListquizs.where((element) => element.uuidChild != uuidChild);
+      return await prefs.setString(
+        'quiz_list',
+        json.encode(
+          newList
+              .map<Map<String, dynamic>>(
+                  (quiz) => QuizModelDB.fromEntity(quiz).toJson())
+              .toList(),
+        ),
+      );
+    }
+    return false;
+  }
 }

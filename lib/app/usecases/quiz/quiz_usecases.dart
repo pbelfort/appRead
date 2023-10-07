@@ -40,7 +40,15 @@ abstract class QuizUsecases {
   }
 
   static Future<List<QuizEntityDB>> getQuizesFromDB(
-      IQuizLocalRepository iQuizLocalRepository) async {
+    IQuizLocalRepository iQuizLocalRepository,
+  ) async {
     return await iQuizLocalRepository.getAllQuizessFromDB();
+  }
+
+  static Future<bool> deleteChildQuizesFromDB({
+    required IQuizLocalRepository iQuizLocalRepository,
+    required String uuidChild,
+  }) async {
+    return await iQuizLocalRepository.deleteUserQuizFromDB(uuidChild);
   }
 }

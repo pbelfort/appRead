@@ -137,6 +137,32 @@ class AdminController extends IGlobalController {
     );
     if (childDeleted) {
       childList.removeWhere((element) => element.uuidChild == uuidChild);
+
+      //update user score
+      CustomSharedPreferences.deleteScoreUserInSharedPreferences(
+        uuidChild: uuidChild,
+      );
+
+      final deletedQuizesFromUserDB =
+          await QuizUsecases.deleteChildQuizesFromDB(
+        iQuizLocalRepository: iQuizLocalRepository,
+        uuidChild: uuidChild,
+      );
+
+      if (deletedQuizesFromUserDB) {
+        final quizes = await QuizUsecases.getQuizesFromDB(iQuizLocalRepository);
+
+        if (quizes.isNotEmpty) {
+          int newQuizesPercent = quizes.length * 100;
+          totalChildScore = (((quizes
+                          .map((e) => e.grade)
+                          .reduce((value, element) => value + element)) /
+                      newQuizesPercent) *
+                  100)
+              .toInt();
+        }
+      }
+
       Get.snackbar(
         'Criança removida!',
         'Sua criança foi removida com sucesso!',
@@ -154,5 +180,9 @@ class AdminController extends IGlobalController {
     }
     showLoading.value = false;
     return childDeleted;
+  }
+
+  void goBackToHome() {
+    Get.offAllNamed(Routes.HOME);
   }
 }

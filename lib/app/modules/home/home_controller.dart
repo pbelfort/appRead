@@ -18,14 +18,8 @@ class HomePageController extends IGlobalController {
   Future<void> onReady() async {
     showLoading.value = true;
     fatherUuid = await CustomSharedPreferences.getUuidUser;
-    if (fatherUuid != null) {
-      childList = await ChildUsecases.getChildsFromFatherUuid(
-        fatherUuid: fatherUuid!,
-        iChildRepository: iChildRepository,
-      );
-    }
+    await getChildList();
     showLoading.value = false;
-
     super.onReady();
   }
 
@@ -33,10 +27,21 @@ class HomePageController extends IGlobalController {
     Get.toNamed(Routes.ADMIN);
   }
 
+  Future<void> getChildList() async {
+    if (fatherUuid != null) {
+      childList = await ChildUsecases.getChildsFromFatherUuid(
+        fatherUuid: fatherUuid!,
+        iChildRepository: iChildRepository,
+      );
+    }
+  }
+
   void goToUserBookPage(ChildEntity child) {
     Get.toNamed(
       Routes.USER_BOOK,
-      arguments: {'child': child},
+      arguments: {
+        'child': child,
+      },
     );
   }
 }

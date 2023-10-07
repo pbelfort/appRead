@@ -52,7 +52,7 @@ class ChildFormFillPage extends GetView<AdminController> {
                 textInputUsernameVisible: true,
                 textInputPasswordVisible: true,
                 onChanged: (value) {},
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.number,
                 textCapitalization: TextCapitalization.none,
                 labelText: 'Idade da criança',
                 validator: (value) {
