@@ -1,5 +1,6 @@
 import 'package:app_read/app/base/global_controller.dart';
 import 'package:app_read/app/domain/book_entity.dart';
+import 'package:app_read/app/domain/child_entity.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,7 +8,7 @@ import 'package:get/get.dart';
 class ReadingController extends IGlobalController {
   final BookEntity book = Get.arguments['book'];
 
-  String? get uuidChild => Get.parameters['uuid_child'];
+  ChildEntity? get child => Get.arguments['child'];
 
   @override
   Future<void> onInit() async {
@@ -27,8 +28,8 @@ class ReadingController extends IGlobalController {
       parameters: {
         'uuid_book': book.uuidBook,
         'book_title': book.title!,
-        'uuid_child': uuidChild ?? ''
       },
+      arguments: {'child': child},
     );
   }
 

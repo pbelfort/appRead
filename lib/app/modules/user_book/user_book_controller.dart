@@ -28,7 +28,7 @@ class UserBookController extends IGlobalController {
     showLoading.value = true;
     readBookList = await iQuizLocalRepository.getAllQuizessFromDB();
     readBookList.removeWhere((element) => element.uuidChild != child.uuidChild);
-    score = await CustomSharedPreferences.getScoreUser(child.uuidChild!);
+    score = await CustomSharedPreferences.getScoreUser(child.uuidChild);
     showLoading.value = false;
     super.onInit();
   }
@@ -36,8 +36,8 @@ class UserBookController extends IGlobalController {
   goToLibraryPage() {
     Get.toNamed(
       Routes.LIBRARY,
-      parameters: {
-        'uuid_child': child.uuidChild ?? '',
+      arguments: {
+        'child': child,
       },
     );
   }

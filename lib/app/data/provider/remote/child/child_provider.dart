@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 
 class ChildProvider implements IChildProvider {
   @override
-  @override
   Future<bool> register(ChildEntity child) async {
     try {
       final response = await http.post(
@@ -51,6 +50,28 @@ class ChildProvider implements IChildProvider {
         }
       }
       return childs;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> deleteChild(String uuidChild) async {
+    try {
+      final response = await http.delete(
+        Uri.parse('${AppEnviroment.baseUrl}/child/deleteChild'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(
+          <String?, String?>{"uuid": uuidChild},
+        ),
+      );
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (e) {
       rethrow;
     }

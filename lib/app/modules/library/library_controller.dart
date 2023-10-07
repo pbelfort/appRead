@@ -1,4 +1,5 @@
 import 'package:app_read/app/base/global_controller.dart';
+import 'package:app_read/app/domain/child_entity.dart';
 import 'package:app_read/app/routes/app_pages.dart';
 import 'package:app_read/app/usecases/library/library_usecases.dart';
 import 'package:flutter/widgets.dart';
@@ -13,7 +14,7 @@ class LibraryController extends IGlobalController {
   final ILibraryRepository iLibraryRepository;
   final IQuizLocalRepository iQuizLocalRepository;
 
-  String? get uuidChild => Get.parameters['uuid_child'];
+  ChildEntity? get child => Get.arguments['child'];
 
   LibraryController({
     required this.iLibraryRepository,
@@ -42,9 +43,7 @@ class LibraryController extends IGlobalController {
       Routes.READING_BOOK,
       arguments: {
         'book': book,
-      },
-      parameters: {
-        'uuid_child': uuidChild ?? '',
+        'child': child,
       },
     );
   }

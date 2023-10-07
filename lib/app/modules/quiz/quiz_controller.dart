@@ -1,4 +1,5 @@
 import 'package:app_read/app/base/global_controller.dart';
+import 'package:app_read/app/domain/child_entity.dart';
 import 'package:app_read/app/domain/quiz_entity.dart';
 import 'package:app_read/app/domain/quiz_entity_db.dart';
 import 'package:app_read/app/modules/quiz/quiz_page.dart';
@@ -15,7 +16,7 @@ import '../../usecases/quiz/quiz_usecases.dart';
 class QuizController extends IGlobalController {
   final String? uuidBook = Get.parameters['uuid_book'];
   final String? bookName = Get.parameters['book_title'];
-  final String? uuidChild = Get.parameters['uuid_child'];
+  final ChildEntity? child = Get.arguments['child'];
 
   final IQuestionRepository iQuestionRepository;
   final IQuizRepository iQuizRepository;
@@ -99,7 +100,7 @@ class QuizController extends IGlobalController {
       },
     );
     grade = ((correctAnswerCounter / questions.length) * 100).toInt();
-
+    if (child == null) return;
     //update grade quiz
     if (quizEntity != null) {
       final updated = await QuizUsecases.updateQuizGrade(
@@ -111,7 +112,7 @@ class QuizController extends IGlobalController {
         await QuizUsecases.saveQuizInDB(
           iQuizLocalRepository: iQuizLocalRepository,
           quizEntity: QuizEntityDB(
-            uuidChild: uuidChild!,
+            uuidChild: child!.uuidChild,
             bookName: bookName!,
             grade: grade,
           ),
@@ -123,7 +124,7 @@ class QuizController extends IGlobalController {
 
     final quizes = await QuizUsecases.getQuizesFromDB(iQuizLocalRepository);
 
-    quizes.removeWhere((element) => element.uuidChild != uuidChild!);
+    quizes.removeWhere((element) => element.uuidChild != child!.uuidChild);
 
     int quizesPercent = quizes.length * 100;
 
@@ -135,11 +136,13 @@ class QuizController extends IGlobalController {
         .toInt();
 
     CustomSharedPreferences.saveScoreUserInSharedPreferences(
-      uuidChild: uuidChild!,
+      uuidChild: child!.uuidChild,
       score: score.toString(),
     );
 
     //get off all named home
-    Get.offAllNamed(Routes.USER_BOOK);
+    Get.offAllNamed(Routes.USER_BOOK, arguments: {
+      'child': child,
+    });
   }
 }

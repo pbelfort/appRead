@@ -7,7 +7,7 @@ class ChildEntity {
     required this.score,
   });
 
-  final String? uuidChild;
+  final String uuidChild;
   final String childName;
   final int age;
   final String fatherUuid;

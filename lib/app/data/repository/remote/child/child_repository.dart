@@ -18,4 +18,9 @@ class ChildRepository implements IChildRepository {
   Future<List<ChildEntity>> getChildsFromFatherUuid(String fatherUuid) {
     return provider.getChildsFromFatherUuid(fatherUuid);
   }
+
+  @override
+  Future<bool> deleteChild(String uuidChild) {
+    return provider.deleteChild(uuidChild);
+  }
 }

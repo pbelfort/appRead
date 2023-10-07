@@ -34,14 +34,16 @@ class AdminController extends IGlobalController {
     fatherUuid = await CustomSharedPreferences.getUuidUser;
 
     final quizes = await QuizUsecases.getQuizesFromDB(iQuizLocalRepository);
-    int quizesPercent = quizes.length * 100;
-    totalChildScore = (((quizes
-                    .map((e) => e.grade)
-                    .reduce((value, element) => value + element)) /
-                quizesPercent) *
-            100)
-        .toInt();
 
+    if (quizes.isNotEmpty) {
+      int quizesPercent = quizes.length * 100;
+      totalChildScore = (((quizes
+                      .map((e) => e.grade)
+                      .reduce((value, element) => value + element)) /
+                  quizesPercent) *
+              100)
+          .toInt();
+    }
     if (fatherUuid != null) {
       childList = await ChildUsecases.getChildsFromFatherUuid(
         fatherUuid: fatherUuid!,
@@ -79,7 +81,7 @@ class AdminController extends IGlobalController {
     showLoading.value = true;
     if (fatherUuid != null) {
       final child = ChildEntity(
-        uuidChild: null,
+        uuidChild: '',
         childName: childNameController.text,
         age: int.parse(childAgeController.text),
         fatherUuid: fatherUuid!,
@@ -97,7 +99,7 @@ class AdminController extends IGlobalController {
           'Sua criança foi registrada com sucesso!',
           instantInit: true,
           colorText: AppColors.white,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: const Color.fromARGB(255, 51, 27, 20),
           snackPosition: SnackPosition.BOTTOM,
           duration: const Duration(seconds: 4),
           margin: const EdgeInsets.all(16),
@@ -113,10 +115,11 @@ class AdminController extends IGlobalController {
     showLoading.value = false;
   }
 
-  Future<bool> showCustomDialog(
-      {required BuildContext context,
-      required String message,
-      required Function() yesFunction}) async {
+  Future<bool> showCustomDialog({
+    required BuildContext context,
+    required String message,
+    required Function() yesFunction,
+  }) async {
     return await showDialog(
       context: context,
       builder: (BuildContext context) => CustomAlertDialog(
@@ -124,5 +127,32 @@ class AdminController extends IGlobalController {
         yesFunction: yesFunction,
       ),
     ).then((value) => true);
+  }
+
+  Future<bool> deleteChild(String uuidChild) async {
+    showLoading.value = true;
+    final childDeleted = await ChildUsecases.deleteChild(
+      uuidChild: uuidChild,
+      iChildRepository: iChildRepository,
+    );
+    if (childDeleted) {
+      childList.removeWhere((element) => element.uuidChild == uuidChild);
+      Get.snackbar(
+        'Criança removida!',
+        'Sua criança foi removida com sucesso!',
+        instantInit: true,
+        colorText: AppColors.white,
+        backgroundColor: const Color.fromARGB(255, 51, 27, 20),
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 4),
+        margin: const EdgeInsets.all(16),
+        icon: const Icon(
+          Icons.check,
+          color: AppColors.white,
+        ),
+      );
+    }
+    showLoading.value = false;
+    return childDeleted;
   }
 }

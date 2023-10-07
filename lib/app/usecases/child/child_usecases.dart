@@ -16,4 +16,11 @@ abstract class ChildUsecases {
   }) async {
     return await iChildRepository.getChildsFromFatherUuid(fatherUuid);
   }
+
+  static Future<bool> deleteChild({
+    required String uuidChild,
+    required IChildRepository iChildRepository,
+  }) async {
+    return await iChildRepository.deleteChild(uuidChild);
+  }
 }

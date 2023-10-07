@@ -177,7 +177,10 @@ class AdminPage extends GetView<AdminController> {
                                             context: context,
                                             message:
                                                 'Deseja deletar este usuário?',
-                                            yesFunction: () {},
+                                            yesFunction: () {
+                                              controller.deleteChild(controller
+                                                  .childList[index].uuidChild);
+                                            },
                                           ),
                                       icon: const Icon(
                                         Icons.delete,

@@ -83,7 +83,7 @@ class UserBookHeader extends GetView<UserBookController> {
               left: 8.0,
             ),
             child: Text(
-              controller.child.uuidChild ?? '',
+              controller.child.uuidChild,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,

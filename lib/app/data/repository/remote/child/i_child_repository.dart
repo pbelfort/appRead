@@ -6,6 +6,6 @@ abstract class IChildRepository {
   IChildRepository({required this.provider});
 
   Future<bool> registerChild(ChildEntity child);
-
   Future<List<ChildEntity>> getChildsFromFatherUuid(String fatherUuid);
+  Future<bool> deleteChild(String uuidChild);
 }
