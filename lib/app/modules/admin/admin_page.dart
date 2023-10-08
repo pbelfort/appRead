@@ -80,22 +80,12 @@ class AdminPage extends GetView<AdminController> {
           icon: Icons.logout_outlined,
           label: 'SAIR',
           action: () => controller.showCustomDialog(
-              context: context,
-              message: 'Deseja realmente sair?',
-              yesFunction: () {}),
+            context: context,
+            message: 'Deseja realmente sair?',
+            yesFunction: controller.goToLoginPage,
+          ),
         ),
       ],
-    );
-
-    Widget textSection = Container(
-      padding: const EdgeInsets.all(32),
-      child: Text(
-        controller.evolutionText(),
-        softWrap: true,
-        style: const TextStyle(
-          color: AppColors.white,
-        ),
-      ),
     );
 
     return Scaffold(
@@ -126,75 +116,79 @@ class AdminPage extends GetView<AdminController> {
                   ? const LinearProgressIndicator(
                       backgroundColor: AppColors.primaryColor,
                     )
-                  : SizedBox(
-                      height: 100.0,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: controller.childList.length,
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            width: 140.0,
-                            child: Card(
-                              color: AppColors.primaryColor,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 12.0,
-                                            left: 4,
-                                          ),
-                                          child: CircleAvatar(
-                                            backgroundColor: AppColors.white,
-                                            child: Icon(
-                                              Icons.child_care,
-                                              color: AppColors.primaryColor,
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        height: 100.0,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.childList.length,
+                          itemBuilder: (context, index) {
+                            return SizedBox(
+                              width: 140.0,
+                              child: Card(
+                                color: AppColors.primaryColor,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Padding(
+                                            padding: EdgeInsets.only(
+                                              top: 12.0,
+                                              left: 4,
+                                            ),
+                                            child: CircleAvatar(
+                                              backgroundColor: AppColors.white,
+                                              child: Icon(
+                                                Icons.child_care,
+                                                color: AppColors.primaryColor,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 12.0,
-                                            left: 4,
-                                          ),
-                                          child: Text(
-                                            controller
-                                                .childList[index].childName,
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: const TextStyle(
-                                              color: AppColors.white,
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 12.0,
+                                              left: 4,
                                             ),
-                                          ),
-                                        )
-                                      ],
+                                            child: Text(
+                                              controller
+                                                  .childList[index].childName,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                color: AppColors.white,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  IconButton(
-                                      onPressed: () =>
-                                          controller.showCustomDialog(
-                                            context: context,
-                                            message:
-                                                'Deseja deletar este usuário?',
-                                            yesFunction: () {
-                                              controller.deleteChild(controller
-                                                  .childList[index].uuidChild);
-                                            },
-                                          ),
-                                      icon: const Icon(
-                                        Icons.delete,
-                                      ))
-                                ],
+                                    IconButton(
+                                        onPressed: () =>
+                                            controller.showCustomDialog(
+                                              context: context,
+                                              message:
+                                                  'Deseja deletar este usuário?',
+                                              yesFunction: () {
+                                                controller.deleteChild(
+                                                    controller.childList[index]
+                                                        .uuidChild);
+                                              },
+                                            ),
+                                        icon: const Icon(
+                                          Icons.delete,
+                                        ))
+                                  ],
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       ),
                     ),
             ),
@@ -203,7 +197,25 @@ class AdminPage extends GetView<AdminController> {
             child: titleSection,
           ),
           SliverToBoxAdapter(
-            child: textSection,
+            child: Obx(
+              () => controller.showLoading.value
+                  ? const LinearProgressIndicator(
+                      backgroundColor: AppColors.primaryColor,
+                    )
+                  : Container(
+                      padding: const EdgeInsets.only(
+                        top: 12,
+                        left: 20,
+                        right: 20,
+                        bottom: 60,
+                      ),
+                      child: Text(
+                        controller.evolutionText(),
+                        softWrap: true,
+                        style: AppTextStyles.textBold14,
+                      ),
+                    ),
+            ),
           ),
           SliverToBoxAdapter(
             child: buttonSection,

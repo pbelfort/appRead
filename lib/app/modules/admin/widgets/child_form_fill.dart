@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../theme/app_colors.dart';
-import '../../widgets/buttons/custom_button_widget.dart';
 import '../../widgets/custom_app_bar_widget.dart';
 import '../../widgets/text_form_fields/custom_text_form_field.dart';
 import '../admin_controller.dart';
@@ -12,12 +11,20 @@ class ChildFormFillPage extends GetView<AdminController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
+      floatingActionButton: FloatingActionButton(
+        onPressed: controller.regiterChild,
+        backgroundColor: AppColors.primaryColor,
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
       appBar: CustomAppBarWidget(action: Get.back),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 8.0,
-          vertical: 1.0,
+          vertical: 50.0,
         ),
         child: Form(
             child: Column(
@@ -28,7 +35,7 @@ class ChildFormFillPage extends GetView<AdminController> {
                 textEditingController: controller.childNameController,
                 changeAccount: true,
                 borderColor: AppColors.backgroundColor,
-                fillColor: Colors.black,
+                fillColor: AppColors.white,
                 textInputEnable: true,
                 textInputUsernameVisible: true,
                 textInputPasswordVisible: true,
@@ -47,7 +54,7 @@ class ChildFormFillPage extends GetView<AdminController> {
                 textEditingController: controller.childAgeController,
                 changeAccount: true,
                 borderColor: AppColors.backgroundColor,
-                fillColor: Colors.black,
+                fillColor: AppColors.white,
                 textInputEnable: true,
                 textInputUsernameVisible: true,
                 textInputPasswordVisible: true,
@@ -57,20 +64,6 @@ class ChildFormFillPage extends GetView<AdminController> {
                 labelText: 'Idade da criança',
                 validator: (value) {
                   return null;
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomButtonWidget(
-                borderRadius: 10,
-                hasIcon: false,
-                height: 40,
-                width: Get.width,
-                title: 'Adicionar',
-                style: CustomButtonStyle.styleCardGreen,
-                onPressed: () async {
-                  controller.regiterChild();
                 },
               ),
             ),

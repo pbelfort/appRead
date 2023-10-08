@@ -7,14 +7,15 @@ import 'package:get/get.dart';
 
 import '../../data/provider/shared/custom_shared_preferences.dart';
 import '../../data/repository/local/quiz/i_quiz_local_repository.dart';
+import '../../data/repository/remote/register/i_user_register_repository.dart.dart';
 import '../../routes/app_pages.dart';
-import '../../theme/app_colors.dart';
 import '../../usecases/quiz/quiz_usecases.dart';
-import '../widgets/dialogs/custom_dialog.dart';
+import '../../usecases/register/register_usecases.dart';
 
 class AdminController extends IGlobalController {
   final IChildRepository iChildRepository;
   final IQuizLocalRepository iQuizLocalRepository;
+  final IUserRegisterRepository userRegisterRepository;
 
   late final String? fatherUuid;
   int totalChildScore = 0;
@@ -25,6 +26,7 @@ class AdminController extends IGlobalController {
   AdminController({
     required this.iChildRepository,
     required this.iQuizLocalRepository,
+    required this.userRegisterRepository,
   });
 
   @override
@@ -54,15 +56,9 @@ class AdminController extends IGlobalController {
     super.onInit();
   }
 
-  @override
-  Future<void> onReady() async {
+  void goToChildFormFillPage() {
     childNameController.clear();
     childAgeController.clear();
-
-    super.onReady();
-  }
-
-  void goToChildFormFillPage() {
     Get.toNamed(Routes.CHILD_FORM_FILL);
   }
 
@@ -94,39 +90,15 @@ class AdminController extends IGlobalController {
 
       if (childRegistered) {
         Get.back();
-        Get.snackbar(
-          'Criança registrada!',
-          'Sua criança foi registrada com sucesso!',
-          instantInit: true,
-          colorText: AppColors.white,
-          backgroundColor: const Color.fromARGB(255, 51, 27, 20),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 4),
-          margin: const EdgeInsets.all(16),
-          icon: const Icon(
-            Icons.check,
-            color: AppColors.white,
-          ),
+        showCustomSnackbar(
+          title: 'Criança registrada!',
+          message: 'Sua criança foi registrada com sucesso!',
         );
       }
       childList.add(child);
     }
 
     showLoading.value = false;
-  }
-
-  Future<bool> showCustomDialog({
-    required BuildContext context,
-    required String message,
-    required Function() yesFunction,
-  }) async {
-    return await showDialog(
-      context: context,
-      builder: (BuildContext context) => CustomAlertDialog(
-        title: message,
-        yesFunction: yesFunction,
-      ),
-    ).then((value) => true);
   }
 
   Future<bool> deleteChild(String uuidChild) async {
@@ -163,19 +135,9 @@ class AdminController extends IGlobalController {
         }
       }
 
-      Get.snackbar(
-        'Criança removida!',
-        'Sua criança foi removida com sucesso!',
-        instantInit: true,
-        colorText: AppColors.white,
-        backgroundColor: const Color.fromARGB(255, 51, 27, 20),
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 4),
-        margin: const EdgeInsets.all(16),
-        icon: const Icon(
-          Icons.check,
-          color: AppColors.white,
-        ),
+      showCustomSnackbar(
+        title: 'Criança removida!',
+        message: 'Sua criança foi removida com sucesso!',
       );
     }
     showLoading.value = false;
@@ -184,5 +146,15 @@ class AdminController extends IGlobalController {
 
   void goBackToHome() {
     Get.offAllNamed(Routes.HOME);
+  }
+
+  goToLoginPage() async {
+    final logout = await RegisterUsecases.signOut(
+      userRegisterRepository: userRegisterRepository,
+    );
+    if (logout == 200) {
+      CustomSharedPreferences.removeTokenInSharedPreferences();
+      Get.offAllNamed(Routes.LOGIN);
+    }
   }
 }

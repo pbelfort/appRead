@@ -15,7 +15,9 @@ class UserBookPage extends GetView<UserBookController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWidget(action: () => Get.offAllNamed(Routes.HOME)),
+      appBar: CustomAppBarWidget(
+        action: () => Get.offAllNamed(Routes.HOME),
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(

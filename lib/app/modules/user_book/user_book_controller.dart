@@ -47,6 +47,7 @@ class UserBookController extends IGlobalController {
       userRegisterRepository: userRegisterRepository,
     );
     if (logout == 200) {
+      CustomSharedPreferences.removeTokenInSharedPreferences();
       Get.offAllNamed(Routes.LOGIN);
     }
   }

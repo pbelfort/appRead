@@ -21,7 +21,7 @@ class UserBookHeader extends GetView<UserBookController> {
               CircleAvatar(
                 backgroundColor: AppColors.primaryColor,
                 child: Text(
-                  controller.child.childName[0],
+                  controller.child.childName[0].toUpperCase(),
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: AppColors.white,
                         fontSize: 20,
@@ -46,7 +46,13 @@ class UserBookHeader extends GetView<UserBookController> {
                 padding: const EdgeInsets.only(left: 10.0),
                 child: GestureDetector(
                   onTap: () async {
-                    await controller.logout();
+                    controller.showCustomDialog(
+                      context: context,
+                      message: 'Deseja realmente sair do aplicativo',
+                      yesFunction: () async {
+                        await controller.logout();
+                      },
+                    );
                   },
                   child: const Icon(
                     Icons.logout,

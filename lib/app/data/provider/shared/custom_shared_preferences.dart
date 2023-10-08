@@ -13,6 +13,11 @@ class CustomSharedPreferences {
     prefs.setString('access_token', token);
   }
 
+  static Future<void> removeTokenInSharedPreferences() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('access_token');
+  }
+
   static Future<String?> get getUuidUser async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('uuid_user');

@@ -13,11 +13,9 @@ class SplashPage extends GetView<SplashController> {
     return Container(
       decoration: const BoxDecoration(color: AppColors.backgroundColor),
       child: Center(
-        child: Center(
-          child: Lottie.asset(
-            'lib/app/assets/bookLogo.json',
-            width: 150,
-          ),
+        child: Lottie.asset(
+          'lib/app/assets/bookLogo.json',
+          width: 150,
         ),
       ),
     );

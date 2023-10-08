@@ -23,6 +23,10 @@ class HomePageController extends IGlobalController {
     super.onReady();
   }
 
+  void goToLoginPage() {
+    Get.toNamed(Routes.LOGIN);
+  }
+
   void goToAdminPage() {
     Get.toNamed(Routes.ADMIN);
   }
