@@ -99,7 +99,7 @@ class AdminController extends IGlobalController {
     return 'O nível de aprendizado está excelente! Continuem assim! :)';
   }
 
-  Future<bool> regiterChild() async {
+  Future<void> regiterChild() async {
     showLoading.value = true;
     if (fatherUuid != null) {
       final child = ChildEntity(
@@ -120,12 +120,10 @@ class AdminController extends IGlobalController {
           title: 'Criança registrada!',
           message: 'Sua criança foi registrada com sucesso!',
         );
-        return childRegistered;
       }
       childList.add(child);
     }
     showLoading.value = false;
-    return false;
   }
 
   Future<void> updateChild(ChildEntity? child) async {
