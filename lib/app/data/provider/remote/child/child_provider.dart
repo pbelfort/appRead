@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:app_read/app/data/model/child_model.dart';
 import 'package:app_read/app/domain/child_entity.dart';
-
 import '../../../../base/enviroment.dart';
 import 'i_child_provider.dart';
 import 'package:http/http.dart' as http;
@@ -66,6 +65,31 @@ class ChildProvider implements IChildProvider {
         body: jsonEncode(
           <String?, String?>{"uuid": uuidChild},
         ),
+      );
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> updateChild(ChildEntity child) async {
+    Map<String, dynamic> jsonBody = {
+      "childName": child.childName,
+      "childAge": child.age,
+      "uuidChild": child.uuidChild
+    };
+    try {
+      final response = await http.post(
+        Uri.parse('${AppEnviroment.baseUrl}/child/updateChild'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(jsonBody),
       );
       if (response.statusCode == 200) {
         return true;

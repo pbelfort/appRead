@@ -8,4 +8,5 @@ abstract class IChildRepository {
   Future<bool> registerChild(ChildEntity child);
   Future<List<ChildEntity>> getChildsFromFatherUuid(String fatherUuid);
   Future<bool> deleteChild(String uuidChild);
+  Future<bool> updateChild(ChildEntity child);
 }

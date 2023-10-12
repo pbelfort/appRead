@@ -67,9 +67,8 @@ class AdminPage extends GetView<AdminController> {
         _buildButtonColumn(
           icon: Icons.add,
           label: 'ADICIONAR',
-          action: () {
-            controller.goToChildFormFillPage();
-          },
+          action: () =>
+              controller.goToChildFormFillPage(fillMode: FillMode.newEntry),
         ),
         _buildButtonColumn(
           icon: Icons.person_2_rounded,
@@ -124,66 +123,75 @@ class AdminPage extends GetView<AdminController> {
                           scrollDirection: Axis.horizontal,
                           itemCount: controller.childList.length,
                           itemBuilder: (context, index) {
-                            return SizedBox(
-                              width: 140.0,
-                              child: Card(
-                                color: AppColors.primaryColor,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 12.0,
-                                              left: 4,
-                                            ),
-                                            child: CircleAvatar(
-                                              backgroundColor: AppColors.white,
-                                              child: Icon(
-                                                Icons.child_care,
-                                                color: AppColors.primaryColor,
+                            return InkWell(
+                              onTap: () {
+                                controller.goToChildFormFillPage(
+                                  fillMode: FillMode.updateEntry,
+                                  child: controller.childList[index],
+                                );
+                              },
+                              child: SizedBox(
+                                width: 140.0,
+                                child: Card(
+                                  color: AppColors.primaryColor,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Padding(
+                                              padding: EdgeInsets.only(
+                                                top: 12.0,
+                                                left: 4,
+                                              ),
+                                              child: CircleAvatar(
+                                                backgroundColor:
+                                                    AppColors.white,
+                                                child: Icon(
+                                                  Icons.child_care,
+                                                  color: AppColors.primaryColor,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              top: 12.0,
-                                              left: 4,
-                                            ),
-                                            child: Text(
-                                              controller
-                                                  .childList[index].childName,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                color: AppColors.white,
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                top: 12.0,
+                                                left: 4,
                                               ),
-                                            ),
-                                          )
-                                        ],
+                                              child: Text(
+                                                controller
+                                                    .childList[index].childName,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  color: AppColors.white,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    IconButton(
+                                      IconButton(
                                         onPressed: () =>
                                             controller.showCustomDialog(
-                                              context: context,
-                                              message:
-                                                  'Deseja deletar este usuário?',
-                                              yesFunction: () {
-                                                controller.deleteChild(
-                                                    controller.childList[index]
-                                                        .uuidChild);
-                                              },
-                                            ),
+                                          context: context,
+                                          message:
+                                              'Deseja deletar este usuário?',
+                                          yesFunction: () {
+                                            controller.deleteChild(controller
+                                                .childList[index].uuidChild);
+                                          },
+                                        ),
                                         icon: const Icon(
                                           Icons.delete,
-                                        ))
-                                  ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             );

@@ -23,4 +23,11 @@ abstract class ChildUsecases {
   }) async {
     return await iChildRepository.deleteChild(uuidChild);
   }
+
+  static Future<bool> updateChild({
+    required ChildEntity child,
+    required IChildRepository iChildRepository,
+  }) async {
+    return await iChildRepository.updateChild(child);
+  }
 }

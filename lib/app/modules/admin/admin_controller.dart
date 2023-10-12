@@ -12,13 +12,20 @@ import '../../routes/app_pages.dart';
 import '../../usecases/quiz/quiz_usecases.dart';
 import '../../usecases/register/register_usecases.dart';
 
+enum FillMode {
+  newEntry,
+  updateEntry,
+}
+
 class AdminController extends IGlobalController {
   final IChildRepository iChildRepository;
   final IQuizLocalRepository iQuizLocalRepository;
   final IUserRegisterRepository userRegisterRepository;
 
   late final String? fatherUuid;
+  FillMode fillModeControl = FillMode.newEntry;
   int totalChildScore = 0;
+  late ChildEntity? childBuffer;
   final childNameController = TextEditingController();
   final childAgeController = TextEditingController();
   List<ChildEntity> childList = <ChildEntity>[];
@@ -56,10 +63,29 @@ class AdminController extends IGlobalController {
     super.onInit();
   }
 
-  void goToChildFormFillPage() {
-    childNameController.clear();
-    childAgeController.clear();
-    Get.toNamed(Routes.CHILD_FORM_FILL);
+  void goToChildFormFillPage({
+    required FillMode fillMode,
+    ChildEntity? child,
+  }) {
+    switch (fillMode) {
+      case FillMode.newEntry:
+        childNameController.clear();
+        childAgeController.clear();
+
+        break;
+      case FillMode.updateEntry:
+        if (child != null) {
+          childBuffer = child;
+          childNameController.text = child.childName;
+          childAgeController.text = child.age.toString();
+        }
+        break;
+    }
+    Get.toNamed(Routes.CHILD_FORM_FILL, parameters: {
+      'fill_mode': fillMode.name,
+    });
+
+    fillModeControl = fillMode;
   }
 
   String evolutionText() {
@@ -73,7 +99,7 @@ class AdminController extends IGlobalController {
     return 'O nível de aprendizado está excelente! Continuem assim! :)';
   }
 
-  Future<void> regiterChild() async {
+  Future<bool> regiterChild() async {
     showLoading.value = true;
     if (fatherUuid != null) {
       final child = ChildEntity(
@@ -94,10 +120,42 @@ class AdminController extends IGlobalController {
           title: 'Criança registrada!',
           message: 'Sua criança foi registrada com sucesso!',
         );
+        return childRegistered;
       }
       childList.add(child);
     }
+    showLoading.value = false;
+    return false;
+  }
 
+  Future<void> updateChild(ChildEntity? child) async {
+    showLoading.value = true;
+
+    if (child == null) return;
+
+    final childToApi = ChildEntity(
+      uuidChild: child.uuidChild,
+      childName: childNameController.text,
+      age: int.parse(childAgeController.text),
+      fatherUuid: child.fatherUuid,
+      score: child.score,
+    );
+
+    final childUpdated = await ChildUsecases.updateChild(
+      child: childToApi,
+      iChildRepository: iChildRepository,
+    );
+
+    if (childUpdated) {
+      Get.back();
+      final index = childList
+          .indexWhere((child) => child.uuidChild == childToApi.uuidChild);
+      childList[index] = childToApi;
+      showCustomSnackbar(
+        title: 'Criança atualizada!',
+        message: 'Sua criança foi atuaizada com sucesso!',
+      );
+    }
     showLoading.value = false;
   }
 

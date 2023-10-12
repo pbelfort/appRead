@@ -1,3 +1,9 @@
+enum AttributeType {
+  name,
+  score,
+  age,
+}
+
 class ChildEntity {
   ChildEntity({
     required this.uuidChild,

@@ -13,11 +13,21 @@ class ChildFormFillPage extends GetView<AdminController> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       floatingActionButton: FloatingActionButton(
-        onPressed: controller.regiterChild,
+        onPressed: () {
+          if (controller.fillModeControl == FillMode.newEntry) {
+            controller.regiterChild();
+            return;
+          }
+          controller.updateChild(controller.childBuffer!);
+        },
         backgroundColor: AppColors.primaryColor,
-        child: const Icon(
-          Icons.add,
-        ),
+        child: controller.fillModeControl == FillMode.updateEntry
+            ? const Icon(
+                Icons.upload,
+              )
+            : const Icon(
+                Icons.add,
+              ),
       ),
       appBar: CustomAppBarWidget(action: Get.back),
       backgroundColor: AppColors.backgroundColor,
