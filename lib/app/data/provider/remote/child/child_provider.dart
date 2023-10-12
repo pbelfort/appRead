@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class ChildProvider implements IChildProvider {
   @override
-  Future<bool> register(ChildEntity child) async {
+  Future<ChildEntity?> register(ChildEntity child) async {
     try {
       final response = await http.post(
         Uri.parse('${AppEnviroment.baseUrl}/child'),
@@ -18,13 +18,12 @@ class ChildProvider implements IChildProvider {
         body: jsonEncode(ChildModel.fromEntity(child).toMap()),
       );
       if (response.statusCode == 200) {
-        return true;
-      } else {
-        return false;
+        return ChildModel.fromMap(jsonDecode(response.body));
       }
     } catch (e) {
       rethrow;
     }
+    return null;
   }
 
   @override

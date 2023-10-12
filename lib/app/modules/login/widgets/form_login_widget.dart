@@ -34,7 +34,16 @@ class FormLogin extends GetView<LoginController> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 50.h),
+                          Container(
+                            decoration: const BoxDecoration(
+                                color: AppColors.backgroundColor),
+                            child: Center(
+                              child: Lottie.asset(
+                                'lib/app/assets/bookLogo.json',
+                                width: 150,
+                              ),
+                            ),
+                          ),
                           Text(
                             'Acessar sua conta',
                             style: AppTextStyles.textSemiBold16.merge(
@@ -49,7 +58,7 @@ class FormLogin extends GetView<LoginController> {
                                         controller.loginTextController,
                                     changeAccount: true,
                                     borderColor: AppColors.backgroundColor,
-                                    fillColor: Colors.black,
+                                    fillColor: AppColors.white,
                                     textInputEnable: true,
                                     textInputUsernameVisible: controller
                                         .textInputUsernameVisible.value,
@@ -85,7 +94,7 @@ class FormLogin extends GetView<LoginController> {
                                   controller.passTextController,
                               changeAccount: true,
                               borderColor: AppColors.backgroundColor,
-                              fillColor: Colors.black,
+                              fillColor: AppColors.white,
                               textInputEnable: true,
                               textInputUsernameVisible:
                                   controller.textInputPasswordVisible.value,
@@ -127,20 +136,22 @@ class FormLogin extends GetView<LoginController> {
                               )
                             ],
                           ),
-                          SizedBox(height: 30.h),
-                          CustomButtonWidget(
-                            borderRadius: 10,
-                            hasIcon: false,
-                            height: 40.h,
-                            width: Get.width,
-                            title: 'Entrar',
-                            style: CustomButtonStyle.styleCardGreen,
-                            onPressed: () async {
-                              if (controller.formKeyLogin.currentState!
-                                  .validate()) {
-                                await controller.signIn();
-                              }
-                            },
+                          Padding(
+                            padding: const EdgeInsets.only(top: 200.0),
+                            child: CustomButtonWidget(
+                              borderRadius: 10,
+                              hasIcon: false,
+                              height: 40.h,
+                              width: Get.width,
+                              title: 'Entrar',
+                              style: CustomButtonStyle.styleCardGreen,
+                              onPressed: () async {
+                                if (controller.formKeyLogin.currentState!
+                                    .validate()) {
+                                  await controller.signIn();
+                                }
+                              },
+                            ),
                           ),
                           SizedBox(height: 20.h),
                         ],

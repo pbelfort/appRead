@@ -10,7 +10,7 @@ class ChildRepository implements IChildRepository {
   ChildRepository({required this.provider});
 
   @override
-  Future<bool> registerChild(ChildEntity child) {
+  Future<ChildEntity?> registerChild(ChildEntity child) {
     return provider.register(child);
   }
 

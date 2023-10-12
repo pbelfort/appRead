@@ -3,7 +3,7 @@ import 'package:app_read/app/data/repository/remote/child/i_child_repository.dar
 import '../../domain/child_entity.dart';
 
 abstract class ChildUsecases {
-  static Future<bool> registerChild({
+  static Future<ChildEntity?> registerChild({
     required ChildEntity child,
     required IChildRepository iChildRepository,
   }) async {

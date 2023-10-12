@@ -89,6 +89,9 @@ class AdminController extends IGlobalController {
   }
 
   String evolutionText() {
+    if (totalChildScore == 0 && childList.isEmpty) {
+      return 'Não existem crianças cadastradas!';
+    }
     if (totalChildScore < 30) return 'As crianças precisam de ler mais livros';
     if (totalChildScore > 30 && totalChildScore < 60) {
       return 'As crianças estão indo bem, mas precisam melhorar';
@@ -114,14 +117,14 @@ class AdminController extends IGlobalController {
         iChildRepository: iChildRepository,
       );
 
-      if (childRegistered) {
+      if (childRegistered != null) {
         Get.back();
         showCustomSnackbar(
           title: 'Criança registrada!',
           message: 'Sua criança foi registrada com sucesso!',
         );
+        childList.add(childRegistered);
       }
-      childList.add(child);
     }
     showLoading.value = false;
   }
