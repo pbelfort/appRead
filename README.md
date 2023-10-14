@@ -1,16 +1,10 @@
-# app_read
+# Aplicativo de incentivo à leitura
 
-A new Flutter project.
+Projeto Integrado 
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+O aplicativo tem como objetivo tornar a leitura mais atraente e interativa para as crianças, incentivando-as a ler mais e com maior frequência. Além disso, o aplicativo também visa promover a aprendizagem de novos conceitos e valores através da leitura, estimulando a imaginação e a criatividade das crianças. Através de uma abordagem lúdica e divertida, espera-se que o aplicativo seja capaz de transformar a leitura em uma atividade prazerosa e enriquecedora para as crianças. 
 
-A few resources to get you started if this is your first Flutter project:
+ 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Elaborado por: Pedro Henrique Belfort
